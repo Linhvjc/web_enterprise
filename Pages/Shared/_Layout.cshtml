@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVCApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/MVCApp.styles.css" asp-append-version="true" />*@
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm" style="justify-content: space-between; padding: 30px 40px">
+                <div class="navbar-nav">
+                    <a class="navbar-brand" href="#">
+                        <img src="~/images/logo-2x.png" alt="Avatar Logo" style="width:100px;">
+                    </a>
+                    <div class="search-input d-flex">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <button class="btn btn-primary" type="button">Search</button>
+                    </div>
+                </div>
+                <ul class="navbar-nav flex-row mr-auto">
+                    <li class="nav-item link">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item link">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Privacy</a>
+                    </li>
+                    <li class="nav-item link">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Guide</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav flex-row mr-auto">
+                    <li class="nav-item link">
+                        <a class="fs-5 text-primary text-hover" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                    </li>
+                    <li class="nav-item link">
+                        <a class="fs-5 text-primary text-hover" asp-area="" asp-controller="Register" asp-action="Index">Register</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <section class="doc_banner_area search-banner-light">
+        <div class="container">
+            <div class="doc_banner_content" style="max-width: 600px;">
+                <form action="#" class="header_search_form">
+                    <div class="form-group" style="position: relative;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" class="form-control search" placeholder="Search for...">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="page_breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">Help</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                <a href="#">Forum</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-sm-5">
+                    <a href="#" class="date">
+                        <i class="icon_clock_alt"></i>
+                        Updated on March 03, 2020
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="doc_blog_grid_area sec_pad forum-page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="answer-action shadow">
+                        <div class="action-content">
+                            <div class="image-wrap">
+                                <img src="~/images/answer.png" alt="answer">
+                            </div>
+                            <div class="content">
+                                <h2 class="ans-title">Want to make some contribution</h2>
+                                <p> Contribute your blog and get reward now!!! </p>
+                            </div>
+                        </div>
+                        <div class="action-button-container">
+                            <a asp-controller="Contribution" asp-action="Create" class="action_btn btn-ans">Post a contribution</a>
+                        </div>
+                    </div>
+                    @RenderBody()
+                </div>
+                <div class="col-lg-3">
+                    <div class="forum_sidebar">
+                        <div class="widget status_widget">
+                            <h4 class="c_head">Information</h4>
+                            <p class="status">
+                                Support is
+                                <span class="offline">Offline</span>
+                            </p>
+                            <div class="information-contact">
+                                <h6>Please contact here: <a class="contact" href="#">here</a></h6>
+                            </div>
+                        </div>
+                        <div class="widget ticket_widget">
+                            <h4 class="c_head">Category</h4>
+                            <ul class="list-unstyled ticket_categories">
+                                <li>
+                                    <img src="~/images/answer.png" alt="category" style="width: 30px;">
+                                    <a href="#">Docs WordPress Theme</a>
+                                    <span class="count">10</span>
+                                </li>
+                                <li>
+                                    <img src="~/images/answer.png" alt="category" style="width: 30px;">
+                                    <a href="#">Docs WordPress Theme</a>
+                                    <span class="count">10</span>
+                                </li>
+                                <li>
+                                    <img src="~/images/answer.png" alt="category" style="width: 30px;">
+                                    <a href="#">Docs WordPress Theme</a>
+                                    <span class="count">10</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="widget tag_widget">
+                            <h4 class="c_head">Tags</h4>
+                            <ul class="list-unstyled w_tag_list style-light">
+                                <li><a href="#">Business</a></li>
+                                <li><a href="#">Computing</a></li>
+                                <li><a href="#">Graphic Designing</a></li>
+                                <li><a href="#">Marketing</a></li>
+                                <li><a href="#">Accounting</a></li>
+                                <li><a href="#">Construction</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - MVCApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

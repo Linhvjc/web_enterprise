@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebEnterprise.ViewModels.Megazine.GetMegazineModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<div class="post-header forums-header">
+    <div class="col-md-6 col-sm-6 support-info">
+        <span>University Blog</span>
+    </div>
+    <div class="col-md-6 col-sm-6 support-category-menus">
+        <ul class="forum-titles">
+            <li class="forum-topic-count">Topic</li>
+            <li class="forum-reply-count">Faculty</li>
+            <li class="forum-freshness">Created Date</li>
+        </ul>
+    </div>
+</div>
+
+@foreach (var megazine in Model)
+{
+    <div class="community-posts-wrapper bb-radius">
+        <div class="community-post style-two forum-item bug pe-2">
+            <div class="col-md-6 post-content">
+                <div class="author-avatar forum-icon">
+                    <img src="~/images/logo-2x.png" alt="community post">
+                </div>
+                <div class="entry-content">
+                    <a asp-controller="Forum" asp-action="Topic" asp-route-id="1">
+                        <h3 class="post-title">@megazine.Name</h3>
+                    </a>
+                    <p>@megazine.Description</p>
+                </div>
+            </div>
+            <div class="col-md-6 post-meta-wrapper">
+                <ul class="forum-titles">
+                    <li class="forum-topic-count">10</li>
+                    <li class="forum-reply-count">@megazine.FacultyName</li>
+                    <li class="forum-freshness">
+                        <div class="freshness-box">
+                            <div class="freshness-top">
+                                <div class="freshness-link">
+                                    <a href="#">@megazine.CreatedDate.ToString("MM/dd/yyyy")</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}

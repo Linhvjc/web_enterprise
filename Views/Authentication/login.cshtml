@@ -1,0 +1,73 @@
+﻿
+@model WebEnterprise.ViewModels.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AuthenticationLayout.cshtml";
+}
+@*@Html.ValidationSummary()*@
+<section class="vh-100" style="background-color: #9A616D; height: 100vh;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="https://mobimg.b-cdn.net/v3/fetch/98/989b4d4a9d8a93124d304a730e3b5739.jpeg?h=900&r=0.5"
+                                 alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%;" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+
+                                <form method="post" asp-controller="Authentication" asp-action="Login">
+
+                                    <div class="row" style="color:red">
+                                        @if (TempData["msg"] != null)
+                                        {
+                                            string alertType = "alert alert-" + TempData["alertType"];
+                                            <div class="@alertType">
+                                                <strong>Alert!</strong> @TempData["msg"]
+                                            </div>
+                                        }
+                                    </div>
+
+                                    <div class="d-flex align-items-center mb-3 pb-1">
+                                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                        <span style="width: 100%;text-align: center;" class="h1 fw-bold mb-0">Login</span>
+                                    </div>
+
+                                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
+                                        Sign into your account
+                                    </h5>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="email" id="form2Example17" class="form-control form-control-lg" asp-for="Email" />
+                                        <label class="form-label" for="form2Example17" asp-for="Email">Email address</label>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="form2Example27"
+                                               class="form-control form-control-lg" asp-for="Password" />
+                                        <label class="form-label" for="form2Example27" asp-for="Password">Password</label>
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+                                    </div>
+
+                                    <a class="small text-muted" href="#!">Forgot password?</a>
+
+                                    <a href="#!" class="small text-muted">Terms of use.</a>
+                                    @* <a href="#!" class="small text-muted">Privacy policy</a>*@
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
