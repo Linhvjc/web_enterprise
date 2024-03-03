@@ -54,6 +54,32 @@
           "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "FirebaseAuthentication.net/3.2.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "compile": {
+          "lib/netstandard1.1/Firebase.Auth.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Firebase.Auth.dll": {}
+        }
+      },
+      "FirebaseStorage.net/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.1/Firebase.Storage.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Firebase.Storage.dll": {}
+        }
+      },
       "Google.Apis.Core/1.67.0": {
         "type": "package",
         "dependencies": {
@@ -3983,6 +4009,30 @@
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "icon.png",
         "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
+    "FirebaseAuthentication.net/3.2.0": {
+      "sha512": "STS9Tk5kzJW6nP2F7jzehEHnBlvOi5r9pDlBb+JMDgdZgIrxosG2zWPizmWJq+0eUn6+npr+BNorHkG8oV/RqQ==",
+      "type": "package",
+      "path": "firebaseauthentication.net/3.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "firebaseauthentication.net.3.2.0.nupkg.sha512",
+        "firebaseauthentication.net.nuspec",
+        "lib/netstandard1.1/Firebase.Auth.dll"
+      ]
+    },
+    "FirebaseStorage.net/1.0.3": {
+      "sha512": "SupDHNUwNqcVwEo/HdFEWAXveQe3fU16q4wrrCxUVwP0a77zaddKp7vo2sHIW56DAsJn/gUfjDK3w0MuBhvzjQ==",
+      "type": "package",
+      "path": "firebasestorage.net/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "firebasestorage.net.1.0.3.nupkg.sha512",
+        "firebasestorage.net.nuspec",
+        "lib/netstandard1.1/Firebase.Storage.dll"
       ]
     },
     "Google.Apis.Core/1.67.0": {
@@ -11119,6 +11169,8 @@
       "AspNetCoreHero.ToastNotification >= 1.1.0",
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
+      "FirebaseAuthentication.net >= 3.2.0",
+      "FirebaseStorage.net >= 1.0.3",
       "Google.Apis.Core >= 1.67.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.27",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 6.0.27",
@@ -11177,6 +11229,14 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[12.0.1, )"
+          },
+          "FirebaseAuthentication.net": {
+            "target": "Package",
+            "version": "[3.2.0, )"
+          },
+          "FirebaseStorage.net": {
+            "target": "Package",
+            "version": "[1.0.3, )"
           },
           "Google.Apis.Core": {
             "target": "Package",

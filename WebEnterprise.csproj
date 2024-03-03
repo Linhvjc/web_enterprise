@@ -10,6 +10,8 @@
     <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FirebaseAuthentication.net" Version="3.2.0" />
+    <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
     <PackageReference Include="Google.Apis.Core" Version="1.67.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.27" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.27" />
@@ -26,6 +28,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="ViewModels\Semester\" />
     <Folder Include="wwwroot\Admin\" />
+    <Folder Include="wwwroot\files\documentFile\" />
     <Folder Include="wwwroot\images\face\" />
   </ItemGroup>
 

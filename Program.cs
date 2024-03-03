@@ -71,6 +71,7 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IFacultyRepository, FacultyRepository>();
 builder.Services.AddScoped<IMegazineRepository, MegazineRepository>();
+builder.Services.AddScoped<IContributionRepository, ContributionRepository>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

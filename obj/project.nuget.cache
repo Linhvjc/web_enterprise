@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "m1WbmgWVSgB88rCh2E9QDLOgOqZr35nxbnWHI9CYVqqLGubJEvkyv87K1C1kVC6HgQ26X7cXd3+Y89PmGMAW2w==",
+  "dgSpecHash": "6TNAVmsR236i97OnPdUA4rrWkbS5dINn+iVDs+WAS2c39iUOhH19M5KpwI6FOayiUJD3D0vCZy02Ck4ojk8I5w==",
   "success": true,
   "projectFilePath": "D:\\studying\\Web_Enterprise\\Code\\WebEnterprise\\WebEnterprise.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\aspnetcorehero.toastnotification\\1.1.0\\aspnetcorehero.toastnotification.1.1.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\firebaseauthentication.net\\3.2.0\\firebaseauthentication.net.3.2.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\firebasestorage.net\\1.0.3\\firebasestorage.net.1.0.3.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\google.apis.core\\1.67.0\\google.apis.core.1.67.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

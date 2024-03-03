@@ -27,7 +27,7 @@
                     <img src="~/images/logo-2x.png" alt="community post">
                 </div>
                 <div class="entry-content">
-                    <a asp-controller="Forum" asp-action="Topic" asp-route-id="1">
+                    <a asp-controller="Contribution" asp-action="ContributionList" asp-route-id="@megazine.Id">
                         <h3 class="post-title">@megazine.Name</h3>
                     </a>
                     <p>@megazine.Description</p>

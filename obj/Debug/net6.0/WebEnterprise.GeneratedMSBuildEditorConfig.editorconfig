@@ -83,6 +83,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cbG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/studying/Web_Enterprise/Code/WebEnterprise/Views/Contribution/ContributionList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJpYnV0aW9uXENvbnRyaWJ1dGlvbkxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/studying/Web_Enterprise/Code/WebEnterprise/Views/Contribution/Post.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJpYnV0aW9uXFBvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/studying/Web_Enterprise/Code/WebEnterprise/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
