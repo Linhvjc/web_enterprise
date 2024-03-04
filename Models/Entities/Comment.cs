@@ -9,5 +9,9 @@ namespace WebEnterprise.Models.Entities
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         public User User { get; set; }
+
+        public int ContributionId { get; set; }
+        [ForeignKey("ContributionId")]
+        public Contribution Contribution { get; set; }
     }
 }
