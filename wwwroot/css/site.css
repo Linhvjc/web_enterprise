@@ -324,7 +324,7 @@ community-post .post-content .author-avatar img {
 
 .community-post.style-two .post-content .entry-content .post-title {
     display: inline-block;
-    margin-right: 10px;
+    margin-left: 30px;
     margin-bottom: 10px;
     font-size: 16px;
     line-height: 1.7;
@@ -888,3 +888,127 @@ meta {
         font-style: normal;
         font-weight: normal;
     }
+
+.detail-area {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.title-contribute {
+    margin: 0px;
+    color: rgb(35, 40, 44);
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0.2px;
+}
+
+.flex-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.megazine-link {
+    margin: 0px;
+    color: rgb(4, 119, 210);
+    font-size: 0.813rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0.1px;
+}
+
+.small-title {
+    font-size: 0.813rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+}
+
+.time-title {
+    margin: 0px 0px 0.5rem;
+    color: rgb(93, 105, 116);
+    font-size: 0.688rem;
+    line-height: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.profile-area {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.profile-area .avatar {
+    display: inline-flex;
+    border-radius: 50%;
+    width: 2.75rem;
+    height: 2.75rem;
+}
+
+.profile-area .info {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title-name {
+    margin: 0px;
+    color: rgb(35, 40, 44);
+    font-size: 0.813rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.1px;
+}
+
+.small-info {
+    margin-left: 0.5rem;
+    color: rgb(35, 40, 44);
+    font-size: 0.688rem;
+    line-height: 1rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0.2px;
+}
+
+.content2 {
+    margin-top: 40px;
+    background-color: rgb(255, 237, 204);
+    height: auto;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+    width: 100%;
+    min-width: 100%;
+}
+
+.wrapper {
+    position: sticky;
+    top: 60px;
+    overflow: hidden;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.page {
+   /* page-break-after: always;
+    margin: 2cm 10px;*/
+    background: #fff;
+    padding: 20px;
+    
+}

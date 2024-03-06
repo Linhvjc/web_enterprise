@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebEnterprise.Infrastructure.Persistance;
+using WebEnterprise.Models.Entities;
 using WebEnterprise.Repositories.Abstraction;
 using WebEnterprise.ViewModels.Contribution;
 
@@ -13,9 +14,10 @@ namespace WebEnterprise.Repositories.Implement
             _dbContext = businessDbContext;
         }
 
-        public Task<List<GetContributionModel>> GetAllContributions(int id)
+        public async Task<List<GetContributionModel>> GetAllContributions(int id)
         {
-            var contributions = _dbContext.Contributions.Where(m => m.MegazineId == id)
+            var contributions = await _dbContext.Contributions
+                .Where(con => con.MegazineId == id)
                 .Select(c => new GetContributionModel
                 {
                     Id = c.Id,
@@ -24,9 +26,18 @@ namespace WebEnterprise.Repositories.Implement
                     FullName = c.User.FullName,
                     ProfilePicture = c.User.ProfilePicture,
                     ReplyCount = c.Comments.Count()
-                }).ToListAsync();
+                })
+                .ToListAsync();
 
             return contributions;
+        }
+
+        public async Task<Contribution> GetContributionWithRelevant(int id)
+        {
+            var contribution = await _dbContext.Contributions
+                .Include(d => d.User).Include(m => m.Megazine)
+                .FirstOrDefaultAsync(c => c.Id == id);
+            return contribution;
         }
     }
 }

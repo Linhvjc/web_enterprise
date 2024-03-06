@@ -11,7 +11,7 @@
             <img src="~/images/answer.png" alt="answer">
         </div>
         <div class="content">
-            <h2 class="ans-title">Want to make some contribution</h2>
+            <h2 class="ans-title">Want to make some contribution @ViewBag.Id</h2>
             <p> Contribute your blog and get reward now!!! </p>
         </div>
     </div>
@@ -37,15 +37,13 @@
 </div>
 <div class="load-forum">
     <div class="community-posts-wrapper bb-radius">
-        @if (Model.Contributions.Any())
-        {
             @foreach (var con in Model.Contributions)
             {
                 <div class="community-post style-two">
                     <div class="post-content">
                         <div class="freshness-bottom" style="padding-right: 20px;">
                             <div class="freshness-name">
-                                <a asp-controller="Contribution" asp-action="AddContribution" asp-route-id="@ViewBag.Id" class="bbp-author-link" class="bbp-author-link">
+                                <a asp-controller="Contribution" asp-action="Detail" asp-route-id="@con.Id" class="bbp-author-link" class="bbp-author-link">
                                     <span class="bbp-author-name">@con.FullName</span>
                                 </a>
                             </div>
@@ -54,7 +52,7 @@
                             </span>
                         </div>
                         <div class="entry-content">
-                            <a asp-controller="Post" asp-action="Index" asp-route-id="Id" class="bbp-author-link" class="bbp-author-link">
+                           <a asp-controller="Contribution" asp-action="Detail" asp-route-id="@con.Id" class="bbp-author-link" class="bbp-author-link">
                                 <h3 class="post-title">@con.Title</h3>
                             </a>
                             <ul class="meta">
@@ -76,10 +74,5 @@
                 </div>
             }
 
-        }
-        else
-        {
-            <h3 style="text-align: center">It looks like there is no posts yet.</h3>
-        }
     </div>
 </div>

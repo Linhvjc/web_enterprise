@@ -4,9 +4,7 @@ using WebEnterprise.Models.Entities;
 
 namespace WebEnterprise.Models.Entities
 {
-   
-}
- public class Contribution : EntityBase
+    public class Contribution : EntityBase
     {
         public string FilePath { get; set; }
         public string Title { get; set; }
@@ -20,3 +18,4 @@ namespace WebEnterprise.Models.Entities
 
         public List<Comment> Comments { get; set; }
     }
+}

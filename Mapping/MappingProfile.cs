@@ -19,6 +19,11 @@ namespace WebEnterprise.Mapping
                 .ForMember(dest => dest.FacultyName, act => act.MapFrom(src => src.Faculty.Name))
                 .ReverseMap();
             CreateMap<Contribution, CreateContribution>().ReverseMap();
+            CreateMap<Contribution, DetailContribution>()
+                .ForMember(dest => dest.FullName, act => act.MapFrom(src => src.User.FullName))
+                .ForMember(dest => dest.ProfilePicture, act => act.MapFrom(src => src.User.ProfilePicture))
+                .ForMember(dest => dest.numberContribution, act => act.MapFrom(src => src.User.Contributions.Count()))
+                .ReverseMap();
         }
 
 

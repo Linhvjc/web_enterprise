@@ -9,6 +9,7 @@ namespace WebEnterprise.Repositories.Implement
         private IFacultyRepository _faultyRepository;
         private IMegazineRepository _megazineRepository;
         private IContributionRepository _contributionRepository;
+        private IUserRepository _userRepository;
 
         public UnitOfWork(UniversityDbContext dbContext)
         {
@@ -21,5 +22,8 @@ namespace WebEnterprise.Repositories.Implement
             _megazineRepository ??= new MegazineRepository(_dbContext);
         public IContributionRepository ContributionRepository =>
             _contributionRepository ??= new ContributionRepository(_dbContext);
+
+        public IUserRepository UserRepository => 
+            _userRepository ??= new UserRepository(_dbContext); 
     }
 }

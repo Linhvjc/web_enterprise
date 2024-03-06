@@ -49,7 +49,7 @@ namespace WebEnterprise.Areas.Admin.Controllers
                 ViewBag.FacultyList = new SelectList(viewFacultyList, "FacultyId", "Name");
                 return View(model);
             }
-            model.Role = "User";
+            model.Role = model.Role;
             model.FacultyId = model.FacultyId;
             var result = await _service.RegistrationAsync(model);
             TempData["msg"] = result.Message;

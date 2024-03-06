@@ -46,6 +46,7 @@ namespace WebEnterprise.Controllers
                 var result = await _service.LoginAsync(user);
                 if (result.StatusCode == 1)
                 {
+                    _httpContextAccessor.HttpContext.Session.SetString("Email", user.Email);
                     _httpContextAccessor.HttpContext.Session.SetString("UserId", checkUser.Id);
                     _httpContextAccessor.HttpContext.Session.SetString("UserName", checkUser.FullName);
                     _httpContextAccessor.HttpContext.Session.SetInt32("FacultyId", checkUser.FacultyId);
