@@ -4,5 +4,7 @@
     {
         IFacultyRepository FacultyRepository { get; }
         IMegazineRepository MegazineRepository { get; }
+        IContributionRepository ContributionRepository { get; }
+        IUserRepository UserRepository { get; }
     }
 }

@@ -1,0 +1,62 @@
+﻿@model WebEnterprise.ViewModels.Contribution.DetailContribution
+@using GleamTech.AspNet.Core
+@using GleamTech.DocumentUltimate
+@using GleamTech.DocumentUltimate.AspNet
+@using GleamTech.DocumentUltimate.AspNet.UI
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_DetailLayout";
+}
+
+@{
+    var documentViewer = new DocumentViewer
+            {
+                Width = 900,
+                Height = 700,
+                Document = ViewBag.DocumentUrl,
+            };
+}
+
+<div class="row">
+   
+    <div class="col-lg-9">
+        <div class="detail-area">
+            <h1 class="title-contribute"></h1>
+            <div class="flex-row">
+                <a class="megazine-link" href="">Name Of Megazine</a>
+                <a class="megazine-link" href="">Name Of Faculty</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="detail-area">
+            <p class="time-title">Uploaded On 04/04/2024</p>
+            <div class="profile-area">
+                <div class="avatar">
+                    <img class="avatar" src="~/images/answer.png" alt="answer">
+                </div>
+                <div class="info">
+                    <span class="info">Nguyen Hoang Hong Quan</span>
+                    <div class="small-info">12 contributions</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-lg-9">  
+        <div class="content2">
+            <div class="wrapper">
+                @*<div class="page">@Model.FilePath</div>*@
+                @this.RenderHead(documentViewer)
+                @this.RenderBody(documentViewer)
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+    
+    </div>
+</div>

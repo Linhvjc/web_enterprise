@@ -1,15 +1,17 @@
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
+using GleamTech.AspNet.Core;
+using GleamTech.DocumentUltimate.AspNet;
+using GleamTech.DocumentUltimate;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using System.Reflection;
 using WebEnterprise.Infrastructure.Persistance;
 using WebEnterprise.Models.Entities;
 using WebEnterprise.Repositories.Abstraction;
 using WebEnterprise.Repositories.Implement;
+using WebEnterprise.Models.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -66,13 +68,18 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IFacultyRepository, FacultyRepository>();
 builder.Services.AddScoped<IMegazineRepository, MegazineRepository>();
+builder.Services.AddScoped<IContributionRepository, ContributionRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+builder.Services.AddGleamTech();
 
 var app = builder.Build();
 
@@ -86,6 +93,7 @@ if (!app.Environment.IsDevelopment())
 app.UseNotyf();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseGleamTech();
 
 app.UseRouting();
 app.UseSession();
@@ -93,10 +101,6 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//app.MapControllerRoute(
-//       name: "default",
-//       pattern: "{controller=Home}/{action=Index}/{id?}"
-//   );
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");

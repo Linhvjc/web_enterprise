@@ -1,0 +1,78 @@
+﻿@model WebEnterprise.ViewModels.Contribution.ContributionList
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<div class="answer-action shadow">
+    <div class="action-content">
+        <div class="image-wrap">
+            <img src="~/images/answer.png" alt="answer">
+        </div>
+        <div class="content">
+            <h2 class="ans-title">Want to make some contribution @ViewBag.Id</h2>
+            <p> Contribute your blog and get reward now!!! </p>
+        </div>
+    </div>
+    <div class="action-button-container">
+        <a asp-controller="Contribution" asp-action="Post" asp-route-megazineId="@ViewBag.Id" class="action_btn btn-ans">Post a contribution</a>
+    </div>
+</div>
+<div class="post-header" style="margin-top: 100px;">
+<ul class="support-total-info">
+    <li class="open-ticket">
+        <i class="fa-solid fa-circle-info"></i>
+        <a href="">8 Opens</a>
+    </li>
+    <li class="open-ticket">
+        <i class="fa-solid fa-check"></i>
+        <a id="check">12 Closed</a>
+    </li>
+    <li class="open-ticket">
+        <i class="fa-solid fa-rotate-right"></i>
+        <a id="check">Reset</a>
+    </li>
+</ul>
+</div>
+<div class="load-forum">
+    <div class="community-posts-wrapper bb-radius">
+            @foreach (var con in Model.Contributions)
+            {
+                <div class="community-post style-two">
+                    <div class="post-content">
+                        <div class="freshness-bottom" style="padding-right: 20px;">
+                            <div class="freshness-name">
+                                <a asp-controller="Contribution" asp-action="Detail" asp-route-id="@con.Id" class="bbp-author-link" class="bbp-author-link">
+                                    <span class="bbp-author-name">@con.FullName</span>
+                                </a>
+                            </div>
+                            <span class="bbp-author-avatar">
+                                <img src="~/Images/face/face1.jpg" alt="name" style="width: 55%;">
+                            </span>
+                        </div>
+                        <div class="entry-content">
+                           <a asp-controller="Contribution" asp-action="Detail" asp-route-id="@con.Id" class="bbp-author-link" class="bbp-author-link">
+                                <h3 class="post-title">@con.Title</h3>
+                            </a>
+                            <ul class="meta">
+                                <li><a href=""> ASP.Net technology</a></li>
+                                <li><i class="fa-solid fa-clock"></i> @con.CreatedDate</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="post-meta-wrapper">
+                        <ul class="post-meta-info">
+                            <li>
+                                <a href=""><i class="fa-regular fa-comment" style="margin-right: 4px;"></i>@con.ReplyCount</a>
+                            </li>
+                            <li>
+                                <a href=""><i class="fa-sharp fa-solid fa-star" style="margin-right: 4px;"></i>3</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
+
+    </div>
+</div>
