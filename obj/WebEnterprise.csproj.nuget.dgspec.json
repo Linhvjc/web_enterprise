@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\studying\\Web_Enterprise\\Code\\WebEnterprise\\WebEnterprise.csproj": {}
+    "E:\\1640 (Web Enterprise)\\Comp1640\\WebEnterprise.csproj": {}
   },
   "projects": {
-    "D:\\studying\\Web_Enterprise\\Code\\WebEnterprise\\WebEnterprise.csproj": {
+    "E:\\1640 (Web Enterprise)\\Comp1640\\WebEnterprise.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\studying\\Web_Enterprise\\Code\\WebEnterprise\\WebEnterprise.csproj",
+        "projectUniqueName": "E:\\1640 (Web Enterprise)\\Comp1640\\WebEnterprise.csproj",
         "projectName": "WebEnterprise",
-        "projectPath": "D:\\studying\\Web_Enterprise\\Code\\WebEnterprise\\WebEnterprise.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\studying\\Web_Enterprise\\Code\\WebEnterprise\\obj\\",
+        "projectPath": "E:\\1640 (Web Enterprise)\\Comp1640\\WebEnterprise.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "E:\\1640 (Web Enterprise)\\Comp1640\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -98,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
