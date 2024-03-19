@@ -10,6 +10,7 @@ namespace WebEnterprise.Repositories.Implement
         private IMegazineRepository _megazineRepository;
         private IContributionRepository _contributionRepository;
         private IUserRepository _userRepository;
+        private IImageRepository _imageRepository;
 
         public UnitOfWork(UniversityDbContext dbContext)
         {
@@ -25,5 +26,8 @@ namespace WebEnterprise.Repositories.Implement
 
         public IUserRepository UserRepository => 
             _userRepository ??= new UserRepository(_dbContext); 
+
+        public IImageRepository ImageRepository =>
+            _imageRepository ??= new ImageRepository(_dbContext);
     }
 }

@@ -3,9 +3,15 @@
 @using GleamTech.DocumentUltimate
 @using GleamTech.DocumentUltimate.AspNet
 @using GleamTech.DocumentUltimate.AspNet.UI
+@using Microsoft.AspNetCore.Http
 @{
     ViewData["Title"] = "Index";
     Layout = "_DetailLayout";
+}
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var session = HttpContextAccessor.HttpContext.Session;
+    var userId = session.GetString("UserId");
 }
 
 @{
@@ -17,8 +23,14 @@
             };
 }
 
+<style>
+    .modal-dialog {
+        max-width: 500px;
+    }
+</style>
+
 <div class="row">
-   
+
     <div class="col-lg-9">
         <div class="detail-area">
             <h1 class="title-contribute"></h1>
@@ -30,7 +42,7 @@
     </div>
     <div class="col-lg-3">
         <div class="detail-area">
-            <p class="time-title">Uploaded On 04/04/2024</p>
+            <p class="time-title">Uploaded On 04/04/2024 @Model.EndSemesterDate</p>
             <div class="profile-area">
                 <div class="avatar">
                     <img class="avatar" src="~/images/answer.png" alt="answer">
@@ -41,13 +53,56 @@
                 </div>
             </div>
         </div>
+
+        @*Modal popup*@
+        <div class="mt-3">
+           @{
+                if (Model.UserId == userId){
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        Upload Image
+                    </button>
+                }
+                <div class="text-danger">@TempData["NotificationMessage"]</div>
+           }         
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">Modal Title</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @using (Html.BeginForm("UploadImage", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-group">
+                                    <input type="file" name="FilePaths" class="form-control" accept=".jpg, .jpeg, .png" multiple required />
+                                    @Html.ValidationMessageFor(model => model.CreateImage.FilePaths, "", new { @class = "text-danger" })
+                                </div>
+                                <input type="hidden" name="ContributionId" value="@Model.Id">
+                                <input type="hidden" name="EndSemesterDate" value="@Model.EndSemesterDate" />
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 
 <div class="row">
 
-    <div class="col-lg-9">  
+    <div class="col-lg-9">
         <div class="content2">
             <div class="wrapper">
                 @*<div class="page">@Model.FilePath</div>*@
@@ -57,6 +112,30 @@
         </div>
     </div>
     <div class="col-lg-3">
-    
+        <div class="list-image">
+            <div class=" d-flex flex-column gap-2 mt-5 image-area">
+                @foreach (var image in ViewBag.ImagePaths)
+                {
+                    <div class="center-image">
+                        <a href="@image" data-fancybox="gallery" target="_blank">
+                            <img src="@image" width="250px" alt="image" />
+                        </a>
+                        
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        Fancybox.bind('[data-fancybox="gallery"]', {
+            // Options
+        });
+
+        $("#submitBtn").click(function () {
+            $("#myModal").modal('hide');
+        });
+    });
+</script>

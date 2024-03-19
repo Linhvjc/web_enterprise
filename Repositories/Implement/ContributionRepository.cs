@@ -32,11 +32,40 @@ namespace WebEnterprise.Repositories.Implement
             return contributions;
         }
 
-        public async Task<Contribution> GetContributionWithRelevant(int id)
+        public async Task<List<GetContributionStudent>> GetAllContributionStudents(string userId)
+        {
+            var contributions = await _dbContext.Contributions.Where(c => c.UserId == userId)
+                .Select(c => new GetContributionStudent
+                {
+                    Id = c.Id,
+                    CreatedDate = c.CreatedDate,
+                    MegazineName = c.Megazine.Name,
+                    Status = c.Status,
+                    Title = c.Title
+                }).ToListAsync();
+
+            return contributions;
+        }
+
+        public async Task<DetailContribution> GetContributionWithRelevant(int id)
         {
             var contribution = await _dbContext.Contributions
-                .Include(d => d.User).Include(m => m.Megazine)
-                .FirstOrDefaultAsync(c => c.Id == id);
+                .Where(c => c.Id == id)
+                .Select(c => new DetailContribution
+                {
+                    Id = c.Id,
+                    FullName = c.User.FullName,
+                    CreatedDate = c.CreatedDate,
+                    Title = c.Title,
+                    ProfilePicture = c.User.ProfilePicture,
+                    UserId = c.UserId,
+                    FilePath = c.FilePath,
+                    EndSemesterDate = c.Megazine.Semester.EndDate,
+                    numberContribution = _dbContext.Contributions.Count(u => u.UserId == c.UserId),
+                    imagePaths = c.Images.Where(i => i.ContributionId == c.Id).Select(i => i.FilePath).ToList()
+                })
+                .FirstOrDefaultAsync();
+
             return contribution;
         }
     }

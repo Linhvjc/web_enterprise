@@ -1,4 +1,6 @@
-﻿namespace WebEnterprise.ViewModels.Contribution
+﻿using WebEnterprise.ViewModels.Imgae;
+
+namespace WebEnterprise.ViewModels.Contribution
 {
     public class DetailContribution
     {
@@ -8,6 +10,11 @@
         public string FullName { get; set; }
         public string ProfilePicture { get; set; }
         public int numberContribution { get; set; }
+        public string UserId { get; set; }
+        public DateTime EndSemesterDate { get; set; }
         public DateTime CreatedDate { get; set; }
+        public List<string> imagePaths { get; set; }
+
+        public CreateImage CreateImage { get; set; }
     }
 }

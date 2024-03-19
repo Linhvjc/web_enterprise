@@ -45,9 +45,6 @@ namespace WebEnterprise.Controllers
             {
                 Contributions = contributions
             };
-            var currentFacultyId = _httpContextAccessor.HttpContext.Session.GetInt32("FacultyId");
-            var receiver = await _unitOfWork.UserRepository.findCoorEmail((int)currentFacultyId);
-            _notyfService.Information(receiver);
             return View(ContributionList);
         }
 
@@ -87,7 +84,7 @@ namespace WebEnterprise.Controllers
                             new FirebaseStorageOptions
                             {
                                 AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
-                                ThrowOnCancel = true // when you cancel the upload, an exception is thrown. By default, no exception is thrown
+                                ThrowOnCancel = true 
                             })
                             .Child("assets")
                             .Child($"{uniqueFileName}")
@@ -135,7 +132,6 @@ namespace WebEnterprise.Controllers
         {
            
             var contribution = await _unitOfWork.ContributionRepository.GetContributionWithRelevant(id);
-            DetailContribution detailContribution = _mapper.Map<DetailContribution>(contribution);
 
             var auth = new FirebaseAuthProvider(new FirebaseConfig(apiKey));
             var a = await auth.SignInWithEmailAndPasswordAsync(AuthEmail, AuthPassword);
@@ -143,7 +139,9 @@ namespace WebEnterprise.Controllers
             {
                 AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken), 
             });
-            var reference = storage.Child("assets").Child(detailContribution.FilePath);
+            var reference = storage.Child("assets").Child(contribution.FilePath);
+            var listImagePath = new List<string>();
+           
             try
             {
                 // Get a download URL for the file
@@ -153,41 +151,96 @@ namespace WebEnterprise.Controllers
                 if (downloadUrl != null)
                 {
                     ViewBag.DocumentUrl = downloadUrl;
-                }            
+                }
+
+                foreach (var image in contribution.imagePaths)
+                {
+                    var imageReference = storage.Child("assets").Child(image);
+                    var downloadImageTask = imageReference.GetDownloadUrlAsync();
+                    var imagePath = await downloadImageTask;
+                    listImagePath.Add(imagePath);
+                }
+                ViewBag.ImagePaths = listImagePath;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error retrieving download URL: " + ex.Message);
             }
-            //ViewBag.DocumentUrl = filePath;
 
-            return View(detailContribution);
+            return View(contribution);
         }
-       
+        [HttpGet]
+        public async Task<ActionResult<ListContributionStudent>> GetContributionStudent()
+        {
+            var userId = _httpContextAccessor.HttpContext.Session.GetString("UserId");
+            var listContributions = new ListContributionStudent();
+            listContributions.GetContributionStudents = await _unitOfWork.ContributionRepository.GetAllContributionStudents(userId);
 
-        //[HttpPost]
-        //public IActionResult OnPost(string FileName)
-        //{
-           
-        //    string projectRootPath = _hostEnvironment.ContentRootPath;
-        //    string outputPath = Path.Combine(projectRootPath, "wwwroot", "files");
-        //    string storagePath = Path.Combine(projectRootPath, "storage");
-        //    int pageCount = 0;
-        //    string imageFilesFolder = Path.Combine(outputPath, Path.GetFileName(FileName).Replace(".", "_"));
-        //    if (!Directory.Exists(imageFilesFolder))
-        //    {
-        //        Directory.CreateDirectory(imageFilesFolder);
-        //    }
-        //    string imageFilesPath = Path.Combine(imageFilesFolder, "page-{0}.png");
-        //    using (Viewer viewer = new Viewer( Path.Combine(storagePath, FileName)))
-        //    {
-        //        ViewInfo info = viewer.GetViewInfo(ViewInfoOptions.ForPngView(false));
-        //        pageCount = info.Pages.Count;
-        //        PngViewOptions options = new PngViewOptions(imageFilesPath);
-        //        viewer.View(options);
-        //    }
-        //    return new JsonResult(pageCount);
-        //}
+            return View(listContributions);
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<ActionResult> UpdateContribution(UpdateContribution updateContribution)
+        {
+            if (ModelState.IsValid)
+            {
+                var fileUpload = updateContribution.File;
+                FileStream fileStream;
+                if (fileUpload.Length > 0)
+                {
+                    string folderName = "documentFile";
+                    string path = Path.Combine(_hostEnvironment.WebRootPath, $"files/{folderName}");
+                    string uniqueFileName = $"{Guid.NewGuid()}{Path.GetExtension(fileUpload.FileName)}";
+
+                    var auth = new FirebaseAuthProvider(new FirebaseConfig(apiKey));
+                    var a = await auth.SignInWithEmailAndPasswordAsync(AuthEmail, AuthPassword);
+
+                    var cancellation = new CancellationTokenSource();
+
+                    using (var stream = fileUpload.OpenReadStream())
+                    {
+                        var task = new FirebaseStorage(
+                            Bucket,
+                            new FirebaseStorageOptions
+                            {
+                                AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
+                                ThrowOnCancel = true
+                            })
+                            .Child("assets")
+                            .Child($"{uniqueFileName}")
+                            .PutAsync(stream, cancellation.Token);
+                        try
+                        {
+                            var contribution = await _unitOfWork.ContributionRepository.GetById(updateContribution.Id);
+                            if(contribution == null)
+                            {
+                                _notyfService.Information("failed:" + updateContribution.Id);
+                                return RedirectToAction("GetContributionStudent", "Contribution");
+                            }
+                            contribution.FilePath = uniqueFileName;
+                            _mapper.Map(updateContribution, contribution);
+                            await _unitOfWork.ContributionRepository.Update(contribution);
+                            _notyfService.Success("success");
+                        }
+                        catch (Exception ex)
+                        {
+                            _notyfService.Information("failed:" + ex.Message);
+                            Debug.WriteLine(ex);
+                        }
+                    }
+                }
+
+                return RedirectToAction("GetContributionStudent", "Contribution");
+            }
+            else
+            {
+                _notyfService.Error("Updating failed");
+
+                return RedirectToAction("GetContributionStudent", "Contribution");
+            }
+        }
+
     }
 
 }

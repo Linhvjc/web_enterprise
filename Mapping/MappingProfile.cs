@@ -2,6 +2,7 @@
 using WebEnterprise.Models.Entities;
 using WebEnterprise.ViewModels.Contribution;
 using WebEnterprise.ViewModels.Faculty;
+using WebEnterprise.ViewModels.Imgae;
 using WebEnterprise.ViewModels.Megazine;
 
 namespace WebEnterprise.Mapping
@@ -24,6 +25,9 @@ namespace WebEnterprise.Mapping
                 .ForMember(dest => dest.ProfilePicture, act => act.MapFrom(src => src.User.ProfilePicture))
                 .ForMember(dest => dest.numberContribution, act => act.MapFrom(src => src.User.Contributions.Count()))
                 .ReverseMap();
+            CreateMap<Contribution, UpdateContribution>().ReverseMap();
+
+            CreateMap<Image, CreateImage>().ReverseMap();
         }
 
 

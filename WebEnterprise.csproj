@@ -8,9 +8,17 @@
 
   <ItemGroup>
     <Compile Remove="storage\**" />
+    <Compile Remove="wwwroot\cache\**" />
+    <Compile Remove="wwwroot\files\**" />
     <Content Remove="storage\**" />
+    <Content Remove="wwwroot\cache\**" />
+    <Content Remove="wwwroot\files\**" />
     <EmbeddedResource Remove="storage\**" />
+    <EmbeddedResource Remove="wwwroot\cache\**" />
+    <EmbeddedResource Remove="wwwroot\files\**" />
     <None Remove="storage\**" />
+    <None Remove="wwwroot\cache\**" />
+    <None Remove="wwwroot\files\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,9 +45,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="ViewModels\Semester\" />
     <Folder Include="wwwroot\Admin\" />
-    <Folder Include="wwwroot\files\" />
     <Folder Include="wwwroot\images\face\" />
-    <Folder Include="wwwroot\cache\" />
   </ItemGroup>
 
 </Project>

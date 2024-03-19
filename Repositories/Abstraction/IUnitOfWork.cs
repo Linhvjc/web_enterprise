@@ -6,5 +6,6 @@
         IMegazineRepository MegazineRepository { get; }
         IContributionRepository ContributionRepository { get; }
         IUserRepository UserRepository { get; }
+        IImageRepository ImageRepository { get; }
     }
 }

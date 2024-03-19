@@ -7,6 +7,7 @@
 @{
     var session = HttpContextAccessor.HttpContext.Session;
     var userName = session.GetString("UserName");
+    var userId = session.GetString("UserId");
 }
 
 
@@ -19,6 +20,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
 </head>
 <body>
     <style>
@@ -58,9 +60,39 @@
                     }
                     else
                     {
-                        <li class="nav-item link">Hello @userName</li>
-                        <li class="nav-item link"><a class="fs-5 text-primary text-hover pe-2" asp-action="ViewProfile" asp-controller="Account">Profile </a></li>
-                        <li class="nav-item link"><a class="fs-5 text-primary text-hover" asp-action="Logout" asp-controller="Authentication">Logout </a></li>
+                        <div class="dropdown-container">
+                            <div class="p-3 rounded-2 d-flex align-items-center gap-3 rotate-icon">
+                                <i class="fa-solid fa-circle-user"></i>
+                                <span>@userName</span>
+                                <i class="fa-solid fa-chevron-down my-icon"></i>
+                            </div>
+                            <div class="dropdown-list w-50 shadow-lg drop-list">
+                                <a class="hover-item" asp-action="Logout" asp-controller="Authentication">
+                                    <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
+                                        <div class="p-2 bg-gray change-item rounded-2">
+                                            <i class="fa-solid fa-user change-icon"></i>
+                                        </div>
+                                        <span class="change-text">Your profile</span>
+                                    </div>
+                                </a>
+                                <a class="hover-item" asp-action="GetContributionStudent" asp-controller="Contribution">
+                                    <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
+                                        <div class="p-2 bg-gray change-item rounded-2">
+                                            <i class="fa-solid fa-list change-icon"></i>
+                                        </div>
+                                        <span class="change-text">Your contribution</span>
+                                    </div>
+                                </a>
+                                <a class="hover-item" asp-action="Logout" asp-controller="Authentication">
+                                    <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
+                                        <div class="p-2 bg-gray change-item rounded-2">
+                                            <i class="fa-solid fa-arrow-right-from-bracket change-icon"></i>
+                                        </div>
+                                        <span class="change-text">Log out</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     }
 
 
@@ -85,8 +117,12 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+   @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     @await Component.InvokeAsync("Notyf")
     @RenderSection("Scripts", required: false)
 </body>

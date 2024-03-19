@@ -52,7 +52,7 @@ namespace WebEnterprise.Areas.Admin.Controllers
             model.Role = model.Role;
             model.FacultyId = model.FacultyId;
             var result = await _service.RegistrationAsync(model);
-            TempData["msg"] = result.Message;
+            //TempData["msg"] = result.Message;
             return RedirectToAction("index");
         }
     }
