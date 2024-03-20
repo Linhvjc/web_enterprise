@@ -21,6 +21,11 @@ namespace WebEnterprise.Infrastructure.Persistance
 
                    users.ToTable("Users").Property(p => p.Id).HasColumnName("UserId");
                });
+
+            builder.Entity<Faculty>().HasData(
+                new Faculty { Id = 1, Name = "Computing and Information Technology" },
+                new Faculty { Id = 2, Name = "Business" }
+                );
         }
 
         public DbSet<Faculty> Faculties { get; set; }

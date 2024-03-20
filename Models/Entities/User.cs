@@ -10,6 +10,8 @@ namespace WebEnterprise.Models.Entities
         public int FacultyId { get; set; }
         [ForeignKey("FacultyId")]
         public Faculty Faculty { get; set; }
-        public List<Contribution> Contributions { get; set; }
+        public List<Contribution>? Contributions { get; set; }
+        [NotMapped] // This property will not be added to the database
+        public string Role { get; set; }
     }
 }
