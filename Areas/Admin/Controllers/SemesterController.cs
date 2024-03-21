@@ -11,11 +11,11 @@ using WebEnterprise.Models.Entities;
 namespace WebEnterprise.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class SemestersController : Controller
+    public class SemesterController : Controller
     {
         private readonly UniversityDbContext _context;
 
-        public SemestersController(UniversityDbContext context)
+        public SemesterController(UniversityDbContext context)
         {
             _context = context;
         }

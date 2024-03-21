@@ -105,10 +105,10 @@
 
     <section class="doc_blog_grid_area sec_pad forum-page-content">
         <div class="container">
-           
-                    @RenderBody()
-        </div>    
-                       
+
+            @RenderBody()
+        </div>
+
     </section>
 
     <footer class="border-top footer text-muted">
@@ -117,13 +117,14 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-   @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     @await Component.InvokeAsync("Notyf")
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

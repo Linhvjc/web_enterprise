@@ -27,5 +27,32 @@ namespace WebEnterprise.Repositories.Implement
                 .FirstOrDefaultAsync();
             return email;
         }
+
+        public async Task<string> findStudentEmail(string userId)
+        {
+            return await _dbContext.Users.Where(u => u.Id == userId).Select(x => x.Email).FirstOrDefaultAsync();
+        }
+
+        public async Task<string> FindUserName(string userId)
+        {
+            return await _dbContext.Users.Where(x => x.Id == userId).Select(x => x.UserName).FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> IsAllowed(string userId, int facultyId)
+        {
+            var userCoId = _dbContext.Users.Where(u => u.FacultyId == facultyId)
+                .Join(_dbContext.UserRoles,
+                u => u.Id,
+                ur => ur.UserId,
+                (u, ur) => new { User = u, UserRoleId = ur.RoleId })
+                .Join(_dbContext.Roles,
+                ur => ur.UserRoleId,
+                r => r.Id,
+                (ur, r) => new { User = ur.User, Role = r })
+                .Where(x => x.Role.Name == "COORDINATOR")
+                .Select(x => x.User.Id)
+                .FirstOrDefaultAsync();
+            return await userCoId == userId;
+        }
     }
 }

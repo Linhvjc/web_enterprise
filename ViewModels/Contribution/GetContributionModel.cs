@@ -8,5 +8,7 @@
         public string ProfilePicture { get; set; }
         public int ReplyCount { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string Megazine { get; set; }
+        public string FilePath { get; set; }
     }
 }

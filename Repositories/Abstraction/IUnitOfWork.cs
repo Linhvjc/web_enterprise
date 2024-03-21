@@ -7,5 +7,6 @@
         IContributionRepository ContributionRepository { get; }
         IUserRepository UserRepository { get; }
         IImageRepository ImageRepository { get; }
+        ICommentRepository CommentRepository { get; }
     }
 }
