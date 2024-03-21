@@ -1,0 +1,31 @@
+{
+  "CacheSourceKey": "wipuno",
+  "CachePdfKey": "wipuno/wipuno-ct1imm.pdf",
+  "CacheXpzKey": "wipuno/wipuno-cbn2w4.xpz",
+  "CacheInfoKey": "wipuno/wipuno-cbn2w4.json",
+  "CacheCopyKey": null,
+  "Document": "Type=Url;File=\"https://firebasestorage.googleapis.com/v0/b/webenterprise-8a158.appspot.com/o/assets%2F2643622a-2e3d-437a-8637-668fa12995f4.docx?alt=media&token=85a0a01b-14fe-499d-b3b2-081e85c5236a\"",
+  "DocumentFileName": "2643622a-2e3d-437a-8637-668fa12995f4.docx",
+  "DownloadFileName": null,
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": "2643622a-2e3d-437a-8637-668fa12995f4.docx",
+    "UpdateFields": true,
+    "Encoding": null,
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Attachments": [],
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "wipuno",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  },
+  "Attachments": []
+}

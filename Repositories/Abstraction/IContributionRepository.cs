@@ -8,5 +8,6 @@ namespace WebEnterprise.Repositories.Abstraction
         Task<List<GetContributionModel>> GetAllContributions(int megazineId);
         Task<DetailContribution> GetContributionWithRelevant(int id);
         Task<List<GetContributionStudent>> GetAllContributionStudents(string userId);
+        Task<List<GetContributionModel>> SearchContribution(int megazineId, string? query);
     }
 }

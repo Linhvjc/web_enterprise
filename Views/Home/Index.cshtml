@@ -5,49 +5,150 @@
     Layout = "_Layout";
 }
 
-<div class="post-header forums-header">
-    <div class="col-md-6 col-sm-6 support-info">
-        <span>University Blog</span>
+<section class="doc_banner_area search-banner-light">
+    <div class="container">
+        <div class="doc_banner_content" style="max-width: 600px;">
+            <form asp-controller="Contribution" asp-action="ContributionList" class="header_search_form">
+                <div class="form-group" style="position: relative;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" name="query" class="form-control search" placeholder="Search for...">
+                    <button type="submit" class="searchBtn">search</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="col-md-6 col-sm-6 support-category-menus">
-        <ul class="forum-titles">
-            <li class="forum-topic-count">Topic</li>
-            <li class="forum-reply-count">Faculty</li>
-            <li class="forum-freshness">Created Date</li>
-        </ul>
-    </div>
-</div>
+</section>
 
-@foreach (var megazine in Model)
-{
-    <div class="community-posts-wrapper bb-radius">
-        <div class="community-post style-two forum-item bug pe-2">
-            <div class="col-md-6 post-content">
-                <div class="author-avatar forum-icon">
-                    <img src="~/images/logo-2x.png" alt="community post">
-                </div>
-                <div class="entry-content">
-                    <a asp-controller="Contribution" asp-action="ContributionList" asp-route-id="@megazine.Id">
-                        <h3 class="post-title">@megazine.Name</h3>
-                    </a>
-                    <p class="ms-4">@megazine.Description</p>
-                </div>
+<section class="page_breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#">Help</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a href="#">Forum</a>
+                        </li>
+                    </ol>
+                </nav>
             </div>
-            <div class="col-md-6 post-meta-wrapper">
-                <ul class="forum-titles">
-                    <li class="forum-topic-count">10</li>
-                    <li class="forum-reply-count">@megazine.FacultyName</li>
-                    <li class="forum-freshness">
-                        <div class="freshness-box">
-                            <div class="freshness-top">
-                                <div class="freshness-link">
-                                    <a href="#">@megazine.CreatedDate.ToString("MM/dd/yyyy")</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            <div class="col-sm-5">
+                <a href="#" class="date">
+                    <i class="icon_clock_alt"></i>
+                    Updated on March 03, 2020
+
+                </a>
             </div>
         </div>
     </div>
-}
+</section>
+
+
+<section class="doc_blog_grid_area sec_pad forum-page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+
+
+                <div class="post-header forums-header">
+                    <div class="col-md-6 col-sm-6 support-info">
+                        <span>University Blog</span>
+                    </div>
+                    <div class="col-md-6 col-sm-6 support-category-menus">
+                        <ul class="forum-titles">
+                            <li class="forum-topic-count">Topic</li>
+                            <li class="forum-reply-count">Faculty</li>
+                            <li class="forum-freshness">Created Date</li>
+                        </ul>
+                    </div>
+                </div>
+
+                @foreach (var megazine in Model)
+                {
+                    <div class="community-posts-wrapper bb-radius">
+                        <div class="community-post style-two forum-item bug pe-2">
+                            <div class="col-md-6 post-content">
+                                <div class="author-avatar forum-icon">
+                                    <img src="~/images/logo-2x.png" alt="community post">
+                                </div>
+                                <div class="entry-content">
+                                    <a asp-controller="Contribution" asp-action="ContributionList" asp-route-id="@megazine.Id">
+                                        <h3 class="post-title">@megazine.Name</h3>
+                                    </a>
+                                    <p class="ms-4">@megazine.Description</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 post-meta-wrapper">
+                                <ul class="forum-titles">
+                                    <li class="forum-topic-count">10</li>
+                                    <li class="forum-reply-count">@megazine.FacultyName</li>
+                                    <li class="forum-freshness">
+                                        <div class="freshness-box">
+                                            <div class="freshness-top">
+                                                <div class="freshness-link">
+                                                    <a href="#">@megazine.CreatedDate.ToString("MM/dd/yyyy")</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="col-lg-3">
+                <div class="forum_sidebar">
+                    <div class="widget status_widget">
+                        <h4 class="c_head">Information</h4>
+                        <p class="status">
+                            Support is
+                            <span class="offline">Offline</span>
+                        </p>
+                        <div class="information-contact">
+                            <h6>Please contact here: <a class="contact" href="#">here</a></h6>
+                        </div>
+                    </div>
+                    <div class="widget ticket_widget">
+                        <h4 class="c_head">Category</h4>
+                        <ul class="list-unstyled ticket_categories">
+                            <li>
+                                <img src="~/images/answer.png" alt="category" style="width: 30px;">
+                                <a href="#">Docs WordPress Theme</a>
+                                <span class="count">10</span>
+                            </li>
+                            <li>
+                                <img src="~/images/answer.png" alt="category" style="width: 30px;">
+                                <a href="#">Docs WordPress Theme</a>
+                                <span class="count">10</span>
+                            </li>
+                            <li>
+                                <img src="~/images/answer.png" alt="category" style="width: 30px;">
+                                <a href="#">Docs WordPress Theme</a>
+                                <span class="count">10</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget tag_widget">
+                        <h4 class="c_head">Tags</h4>
+                        <ul class="list-unstyled w_tag_list style-light">
+                            <li><a href="#">Business</a></li>
+                            <li><a href="#">Computing</a></li>
+                            <li><a href="#">Graphic Designing</a></li>
+                            <li><a href="#">Marketing</a></li>
+                            <li><a href="#">Accounting</a></li>
+                            <li><a href="#">Construction</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

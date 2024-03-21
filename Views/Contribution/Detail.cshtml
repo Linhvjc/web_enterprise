@@ -29,41 +29,43 @@
     }
 </style>
 
+
 <div class="row">
 
     <div class="col-lg-9">
         <div class="detail-area">
             <h1 class="title-contribute"></h1>
-            <div class="flex-row">
-                <a class="megazine-link" href="">Name Of Megazine</a>
-                <a class="megazine-link" href="">Name Of Faculty</a>
+            <div class="flex-column">
+                <a class="megazine-link" href="#">Megazine: @Model.MegazineName</a>
+                <a class="megazine-link" href="#">Faculty:@Model.FacultyName</a>
             </div>
         </div>
     </div>
     <div class="col-lg-3">
         <div class="detail-area">
-            <p class="time-title">Uploaded On 04/04/2024 @Model.EndSemesterDate</p>
+            <p class="time-title">Uploaded On @Model.EndSemesterDate</p>
             <div class="profile-area">
                 <div class="avatar">
                     <img class="avatar" src="~/images/answer.png" alt="answer">
                 </div>
                 <div class="info">
-                    <span class="info">Nguyen Hoang Hong Quan</span>
-                    <div class="small-info">12 contributions</div>
+                    <span class="info">@Model.FullName</span>
+                    <div class="small-info">@Model.numberContribution contributions</div>
                 </div>
             </div>
         </div>
 
         @*Modal popup*@
         <div class="mt-3">
-           @{
-                if (Model.UserId == userId){
+            @{
+                if (Model.UserId == userId)
+                {
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         Upload Image
                     </button>
                 }
                 <div class="text-danger">@TempData["NotificationMessage"]</div>
-           }         
+            }
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -110,23 +112,68 @@
                 @this.RenderBody(documentViewer)
             </div>
         </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="list-image">
-            <div class=" d-flex flex-column gap-2 mt-5 image-area">
-                @foreach (var image in ViewBag.ImagePaths)
-                {
-                    <div class="center-image">
-                        <a href="@image" data-fancybox="gallery" target="_blank">
-                            <img src="@image" width="250px" alt="image" />
-                        </a>
-                        
+
+        <div class="bg-color-page">
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <form class="panel-body" asp-action="Create" asp-controller="Comment" method="post">
+                            <textarea class="form-control" rows="2" placeholder="Give a comment now !!!" asp-for="CreateComment.CommentText"></textarea>
+                            <span asp-validation-for="CreateComment.CommentText" class="text-danger"></span>
+                            <input type="hidden" asp-for="CreateComment.StudentId" value="@Model.UserId" />
+                            <input type="hidden" asp-for="CreateComment.ContributionId" value="@Model.Id" />
+                            <input type="hidden" asp-for="CreateComment.FacultyId" value="@Model.FacultyId" />
+                            <div class="mar-top clearfix">
+                                <button class="btn btn-sm btn-primary mt-4 pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i> Upload</button>
+                            </div>
+                        </form>
                     </div>
-                }
+                   
+                </div>
             </div>
         </div>
+
+        @if(Model.Comment != null){
+            <div class="bg-color-page mt-4">
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="media-block">
+                            <p class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="~/images/face/admin.png"></p>
+                            <div class="media-body">
+                                <div class="mar-btm">
+                                    <h5 class="text-semibold media-heading box-inline">@Model.FacultyUserName</h5>
+                                    <p class="text-muted text-sm pb-2"><i class="fa-solid fa-clock"></i> - @Model.CreatedCommentDate.ToShortDateString()</p>
+                                </div>
+                                <p> @Model.Comment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
+    <div class="col-lg-3">
+        @if (ViewBag.ImagePaths != null)
+        {
+            <div class="list-image">
+                <div class=" d-flex flex-column gap-2 mt-1 image-area">
+                    @foreach (var image in ViewBag.ImagePaths)
+                    {
+                        <div class="center-image">
+                            <a href="@image" data-fancybox="gallery" target="_blank">
+                                <img src="@image" width="250px" alt="image" />
+                            </a>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+
 </div>
+
 
 <script>
     $(document).ready(function () {

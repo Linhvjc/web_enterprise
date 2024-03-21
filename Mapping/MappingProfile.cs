@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using WebEnterprise.Models.Entities;
+using WebEnterprise.ViewModels.Comment;
 using WebEnterprise.ViewModels.Contribution;
 using WebEnterprise.ViewModels.Faculty;
 using WebEnterprise.ViewModels.Imgae;
@@ -28,6 +29,8 @@ namespace WebEnterprise.Mapping
             CreateMap<Contribution, UpdateContribution>().ReverseMap();
 
             CreateMap<Image, CreateImage>().ReverseMap();
+
+            CreateMap<Comment, CreateComment>().ReverseMap();
         }
 
 

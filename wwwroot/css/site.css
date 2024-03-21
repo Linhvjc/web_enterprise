@@ -158,7 +158,7 @@ header {
 
 .forum-page-content {
     margin-top: 120px;
-    margin-bottom: 60px; 
+    margin-bottom: 60px;
 }
 
 .answer-action {
@@ -909,7 +909,16 @@ meta {
 .flex-row {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 7px;
+}
+
+.flex-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    flex-direction: column;
 }
 
 .megazine-link {
@@ -944,23 +953,23 @@ meta {
     align-items: flex-start;
 }
 
-.profile-area .avatar {
-    display: inline-flex;
-    border-radius: 50%;
-    width: 2.75rem;
-    height: 2.75rem;
-}
+    .profile-area .avatar {
+        display: inline-flex;
+        border-radius: 50%;
+        width: 2.75rem;
+        height: 2.75rem;
+    }
 
-.profile-area .info {
-    -webkit-box-flex: 1;
-    flex-grow: 1;
-    margin-left: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+    .profile-area .info {
+        -webkit-box-flex: 1;
+        flex-grow: 1;
+        margin-left: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
 .title-name {
     margin: 0px;
@@ -1006,11 +1015,10 @@ meta {
 }
 
 .page {
-   /* page-break-after: always;
+    /* page-break-after: always;
     margin: 2cm 10px;*/
     background: #fff;
     padding: 20px;
-    
 }
 
 .list-image {
@@ -1025,7 +1033,7 @@ meta {
 
 .image-area {
     width: 100%;
-    padding: 4px; 
+    padding: 4px;
     border-radius: 6px;
 }
 
@@ -1033,6 +1041,7 @@ meta {
     width: 100%;
     display: flex;
     justify-content: center;
+    border: solid 1px #3c4146;
 }
 
 .header-items {
@@ -1099,7 +1108,7 @@ header-color:hover {
     background: #e5e7eb;
 }
 
-.change-text{
+.change-text {
     font-weight: 500;
     font-size: 17px;
 }
@@ -1113,7 +1122,7 @@ header-color:hover {
     margin-bottom: 400px;
 }
 
-.min-w-3{
+.min-w-3 {
     min-width: 320px;
 }
 
@@ -1167,6 +1176,7 @@ header-color:hover {
 .text-blue {
     color: #2563eb;
 }
+
 .text-green {
     color: #16a34a;
 }
@@ -1175,9 +1185,9 @@ header-color:hover {
     cursor: pointer;
 }
 
-.mybtn :hover{
-    opacity: 0.5;
-}
+    .mybtn :hover {
+        opacity: 0.5;
+    }
 
 tbody tr:nth-child(even) {
     background-color: #e5e7eb;
@@ -1188,4 +1198,118 @@ tbody tr:nth-child(even) {
     border: none;
     padding: 0;
     cursor: pointer;
+}
+
+.searchBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 12px 5px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    outline: none;
+}
+
+.pagination-container {
+    text-align: center; 
+    padding: 10px 0; 
+}
+
+.pagination {
+    display: inline-flex;
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+}
+
+    .pagination li {
+        margin: 0 5px; 
+    }
+
+        .pagination li a,
+        .pagination li span {
+            text-decoration: none; 
+            padding: 5px 10px; 
+            border: 1px solid #ddd; 
+            color: #337ab7;
+            background-color: #fff;
+            border-radius: 5px; 
+        }
+
+        .pagination li.active span,
+        .pagination li.active a {
+            color: #fff; 
+            background-color: #337ab7; 
+            border-color: #337ab7; 
+        }
+
+        .pagination li:not(.active) a:hover {
+            background-color: #eee; 
+            border-color: #ccc; 
+        }
+
+
+.panel {
+    border-radius: 0;
+    border: 0;
+    margin-bottom: 15px;
+}
+
+
+.panel-body {
+    padding: 25px 0px 25px 0;
+    margin-top: 20px;
+}
+
+.bg-color-page {
+    background: #EBEEF0;
+}
+
+.media-block .media-left {
+    display: block;
+    float: left;
+    margin-right: 7px;
+}
+
+.media-block .media-right {
+    float: right
+}
+
+.media-block .media-body {
+    display: block;
+    overflow: hidden;
+    width: auto
+}
+
+.middle .media-left,
+.middle .media-right,
+.middle .media-body {
+    vertical-align: middle
+}
+
+.thumbnail {
+    border-radius: 0;
+    border-color: #e9e9e9
+}
+
+.tag.tag-sm, .btn-group-sm > .tag {
+    padding: 5px 10px;
+}
+
+.img-sm {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}
+
+.media-block {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.box-inline {
+    margin-bottom: 0;
 }

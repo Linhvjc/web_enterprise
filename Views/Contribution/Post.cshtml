@@ -1,12 +1,12 @@
 ﻿@model WebEnterprise.ViewModels.Contribution.CreateContribution
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
+    Layout = "_DetailLayout";
 }
 
 
 
-<form class="forms-sample"  asp-controller="Contribution" asp-action="Post" method="post" enctype="multipart/form-data">
+<form class="forms-sample" asp-controller="Contribution" asp-action="Post" method="post" enctype="multipart/form-data">
    <div class="form-frame pb-5">
        <div class="item-center mb-3">
             <h2>Select your file: @Model.UserId</h2>
@@ -24,24 +24,23 @@
             </div>
             <p class="file-return form-group mt-1 mb-1"></p>
         </div>
-   </div>
+        <input type="hidden" asp-for="MegazineId" value="@Model.MegazineId" />
+        <span asp-validation-for="MegazineId" class="text-danger"></span>
+        <input type="hidden" asp-for="UserId" value="@Model.UserId" />
+        <span asp-validation-for="UserId" class="text-danger"></span>
+        <div class="d-flex justify-content-center align-items-center mt-4">
+            <div class=" d-flex flex-column">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
+                    <label class="form-check-label" for="termsCheckbox">I agree to the terms and conditions</label>
+                </div>
+                <div class="item-center max-button">
+                    <button type="submit" class="button-9 me-5 mt-4" style="padding: 10px 20px">Submit</button>
+                </div>
 
-    <input type="hidden" asp-for="MegazineId" value="@Model.MegazineId" />
-    <span asp-validation-for="MegazineId" class="text-danger"></span>
-    <input type="hidden" asp-for="UserId" value="@Model.UserId" />
-    <span asp-validation-for="UserId" class="text-danger"></span>
-    <div class="d-flex justify-content-center align-items-center mt-4">
-        <div class=" d-flex flex-column">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
-                <label class="form-check-label" for="termsCheckbox">I agree to the terms and conditions</label>
             </div>
-            <div class="item-center max-button">
-                <button type="submit" class="button-9 me-5 mt-4" style="padding: 10px 20px">Submit</button>
-            </div>
-
         </div>
-    </div>
+   </div>
     
 </form>
 
