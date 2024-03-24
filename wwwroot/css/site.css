@@ -1313,3 +1313,99 @@ tbody tr:nth-child(even) {
 .box-inline {
     margin-bottom: 0;
 }
+
+
+/* add css========================================== */
+
+.custom-margin {
+    margin-left: 200px;
+    margin-top: 100px;
+}
+
+.alert-row {
+    color: red;
+}
+
+.custom-icon {
+    color: #ff6219;
+}
+
+.register-title {
+    width: 90%;
+    text-align: center;
+}
+
+.custom-letter-spacing {
+    letter-spacing: 1px;
+}
+
+.custom-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.custom-margin-right {
+    margin-right: 20px;
+}
+
+.rounded-input {
+    border-radius: 25px;
+}
+
+.field-icon {
+    float: right;
+    margin-right: 10px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+}
+
+.toggle-password:hover {
+    cursor: pointer;
+}
+
+.form-outline {
+    position: relative;
+}
+
+.rounded-input {
+    border-radius: 25px;
+    color: #808080;
+    /* background-color: #C0C0C0; */
+    transition: all 0.3s;
+}
+
+.rounded-input::placeholder {
+    color: #808080;
+    transition: all 0.3s;
+}
+
+.rounded-input:focus::placeholder {
+    opacity: 0;
+}
+
+.rounded-input-label {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    transition: all 0.3s;
+    opacity: 0;
+}
+
+.rounded-input:focus + .rounded-input-label {
+    transform: translateY(-23px); /* Di chuyển label lên 10px */
+    opacity: 1;
+}
+
+.pt-1 {
+    text-align: center;
+}
+
+.fw-normal{
+    text-align: center;
+}
+
+.card-body{
+    background-color: #e8d8d8;
+    border-radius: 5%;
+}

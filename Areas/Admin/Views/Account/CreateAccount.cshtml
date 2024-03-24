@@ -2,15 +2,15 @@
 @model WebEnterprise.ViewModels.RegisterModel
 
 @{
-    ViewData["Title"] = "Falcuty Dashboard";
+    ViewData["Title"] = "CreateAccount";
     Layout = "../../Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-9 grid-margin stretch-card" style="margin-left: 200px; margin-top: 100px;">
+<div class="col-9 grid-margin stretch-card custom-margin">
     <div class="card">
         <div class="card-body">
             <form method="post" asp-area="Admin" asp-controller="Account" asp-action="CreateAccount">
-                <div class="row" style="color:red">
+                <div class="row alert-row">
                     @if (TempData["msg"] != null)
                     {
                         string alertType = "alert alert-" + TempData["alertType"];
@@ -20,50 +20,54 @@
                     }
                 </div>
                 <div class="d-flex align-items-center mb-3 pb-1">
-                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                    <span style="width: 100%;text-align: center;"
-                          class="h1 fw-bold mb-0">Register</span>
+                    <i class="fas fa-cubes fa-2x me-3 custom-icon"></i>
+                    <span class="h1 fw-bold mb-0 register-title">Register</span>
                 </div>
 
-                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
+                <h5 class="fw-normal mb-3 pb-3 custom-letter-spacing">
                     Sign up your
                     account
                 </h5>
 
                 <div class="form-outline mb-4">
                     <input type="email" id="form2Example17" asp-for="Email"
-                           class="form-control form-control-lg" />
-                    <label class="form-label" for="form2Example17" asp-for="Email">Email</label>
+                        class="form-control form-control-lg rounded-input" placeholder="Email" />
+                    <label for="form2Example17" class="rounded-input-label">Email</label>
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
 
                 <div class="form-outline mb-4">
                     <input type="text" id="form2Example27" asp-for="FullName"
-                           class="form-control form-control-lg" />
-                    <label class="form-label" for="form2Example27" asp-for="FullName">Full name</label>
+                        class="form-control form-control-lg rounded-input" placeholder="Full name" />
+                    <label for="form2Example27" class="rounded-input-label">Full name</label>
                     <span asp-validation-for="FullName" class="text-danger"></span>
                 </div>
 
-                <div class="row-block" style="display: flex;">
-                    <div class="form-outline mb-4" style="margin-right: 20px;">
-                        <input type="password" id="form2Example27" class="form-control form-control-lg" asp-for="Password" />
-                        <label class="form-label" for="form2Example27" asp-for="Password">Password</label>
+                <div class="row-block custom-flex">
+                    <div class="form-outline mb-4 custom-margin-right">
+                        <input type="password" id="password" class="form-control form-control-lg rounded-input"
+                            asp-for="Password" placeholder="Password" />
+                        <label for="password" class="rounded-input-label">Password</label>
+                        <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-outline mb-4">
-                        <input type="password" id="form2Example27" class="form-control form-control-lg" asp-for="ConfirmPassword" />
-                        <label class="form-label" for="form2Example27" asp-for="ConfirmPassword">Re-password</label>
+                        <input type="password" id="confirmPassword" class="form-control form-control-lg rounded-input"
+                            asp-for="ConfirmPassword" placeholder="Re-password" />
+                        <label for="confirmPassword" class="rounded-input-label">Re-password</label>
+                        <span toggle="#confirmPassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-outline mb-4">
-                    <input type="text" id="form2Example27" class="form-control form-control-lg" asp-for="PhoneNumber" />
-                    <label class="form-label" for="form2Example27" asp-for="PhoneNumber">Phone Number</label>
+                    <input type="text" id="form2Example27" class="form-control form-control-lg rounded-input"
+                        asp-for="PhoneNumber" placeholder="Phone Number" />
+                    <label for="form2Example27" class="rounded-input-label">Phone Number</label>
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="roleDropdown" asp-for="Role">Role</label>
-                    <select id="roleDropdown" name="Role" asp-for="Role" class="form-control">
+                    <select id="roleDropdown" name="Role" asp-for="Role" class="form-control rounded-input">
                         <option value="">-- Select Role --</option>
                         <option value="Student">Student</option>
                         <option value="Coordinator">Coordinator</option>
@@ -72,11 +76,9 @@
                     <span asp-validation-for="Role" class="text-danger"></span>
                 </div>
                 <div class="form-outline mb-4">
-                    @*<label class="form-label" for="facultyDropdown" asp-for="FacultyId">Faculty</label>
-                    @Html.DropDownListFor(model => model.FacultyId, (SelectList)ViewBag.FacultyList, "-- Select Faculty --", new { @class = "form-control" })
-                    <span asp-validation-for="FacultyId" class="text-danger"></span>*@
                     <label class="form-label" for="facultyDropdown" asp-for="FacultyId">Faculty</label>
-                    <select id="facultyDropdown" name="FacultyId" asp-for="FacultyId" asp-items="(SelectList)ViewBag.FacultyList" class="form-control">
+                    <select id="facultyDropdown" name="FacultyId" asp-for="FacultyId"
+                        asp-items="(SelectList)ViewBag.FacultyList" class="form-control rounded-input">
                         <option value="">-- Select Faculty --</option>
                     </select>
                     <span asp-validation-for="FacultyId" class="text-danger"></span>

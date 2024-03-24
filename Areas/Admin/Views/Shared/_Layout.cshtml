@@ -1,6 +1,6 @@
-﻿﻿
-<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,17 +9,18 @@
     <link href="~/css/site.css" asp-append-version="true" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
-        @RenderBody()
+    @RenderBody()
 
-        <footer class="footer">
-            <div class="container-fluid d-flex justify-content-between">
-                <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Admin © 2024 </span>
-                <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"> admin template from Thien</span>
-            </div>
-        </footer>
-        <!-- partial -->
+    <footer class="footer">
+        <div class="container-fluid d-flex justify-content-between">
+            <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Admin © 2024 </span>
+            <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"> Admin template from Tan</span>
+        </div>
+    </footer>
+    <!-- partial -->
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -27,4 +28,5 @@
     @await Component.InvokeAsync("Notyf")
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>
