@@ -12,6 +12,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
+
 <body>
     <style>
         a {
@@ -53,7 +55,12 @@
                     @if (!SignInManager.IsSignedIn(User))
                     {
                         <li class="nav-item link">
-                            <a class="fs-5 text-primary text-hover" asp-area="" asp-controller="Authentication" asp-action="Login">Login</a>
+                            <a class="fs-5 text-primary text-hover" asp-area="" asp-controller="Authentication"
+                                asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item link">
+                            <a class="fs-5 text-primary text-hover" asp-area="Admin" asp-controller="Account"
+                                asp-action="CreateAccount">Register</a>
                         </li>
                     }
                     else
@@ -116,4 +123,5 @@
     @await Component.InvokeAsync("Notyf")
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>

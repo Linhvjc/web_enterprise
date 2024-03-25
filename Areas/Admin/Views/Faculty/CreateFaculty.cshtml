@@ -1,31 +1,43 @@
-﻿
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model WebEnterprise.ViewModels.Faculty.CreateFacultyModel
 
 @{
-    ViewData["Title"] = "Falcuty Dashboard";
+    ViewData["Title"] = "Faculty Dashboard";
     Layout = "../../Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-9 grid-margin stretch-card" style="margin-left: 200px; margin-top: 100px;">
+<div class="col-9 grid-margin stretch-card custom-margin">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title text-center">Add a new falculty</h4>
-            <p class="card-description">Input the information below </p>
-            <form class="forms-sample" asp-area="Admin" asp-controller="Faculty" asp-action="CreateFaculty" method="post">
-                <div class="form-group">
-                    <label asp-for="Name">Name Falculty</label>
-                    <input type="text" class="form-control" asp-for="Name">
+            <form method="post" asp-area="Admin" asp-controller="Faculty" asp-action="CreateFaculty">
+                <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-cubes fa-2x me-3 custom-icon"></i>
+                    <span class="h1 fw-bold mb-0 register-title">Add a new faculty</span>
+                </div>
+
+                <h5 class="fw-normal mb-3 pb-3 custom-letter-spacing">
+                    Input the information below
+                </h5>
+
+                <div class="form-outline mb-4">
+                    <input type="text" id="facultyName" asp-for="Name"
+                        class="form-control form-control-lg rounded-input" placeholder="Faculty Name" />
+                    <label for="facultyName" class="rounded-input-label">Faculty Name</label>
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Description">Description</label>
-                    <input type="text" class="form-control" asp-for="Description">
+
+                <div class="form-outline mb-4">
+                    <input type="text" id="description" asp-for="Description"
+                        class="form-control form-control-lg rounded-input" placeholder="Description" />
+                    <label for="description" class="rounded-input-label">Description</label>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
-                <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+
+                <div class="pt-1 mb-4">
+                    <button class="btn btn-dark btn-lg btn-block" type="submit">Submit</button>
+                </div>
+
             </form>
         </div>
     </div>
 </div>
-
