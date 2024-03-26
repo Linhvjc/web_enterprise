@@ -124,3 +124,4 @@ Properties/launchSettings.json
 .firebaserc
 firebase.json
 database.rules.json
+public/index.html
