@@ -21,27 +21,32 @@
             <div class="container p-4 pb-0">
                 <!-- Section: CTA -->
                 <section class="">
-                    <p class="d-flex justify-content-center align-items-center">
-                        <span class="footer-me">Well come to</span>
-                        <button data-mdb-ripple-init type="button" class="btn btn-outline-light btn-rounded">
-                            <a asp-area="" asp-controller="Authentication" asp-action="Login">Sign in</a>
-                        </button>
-                    </p>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <p class="d-flex align-items-center">
+                            <span class="footer-me">Well come to</span>
+                        </p>
+                        <form style="padding-bottom: 15px;" asp-area="" asp-controller="Authentication"
+                            asp-action="Login">
+                            <button data-mdb-ripple-init type="submit" class="btn btn-outline-light btn-rounded">
+                                Sign in
+                            </button>
+                        </form>
+                        <form style="padding-bottom: 15px;" asp-area="" asp-controller="Home" asp-action="Index">
+                            <button data-mdb-ripple-init type="submit" class="btn btn-outline-light btn-rounded">
+                                Home
+                            </button>
+                        </form>
+                        <p class="d-flex align-items-center">
+                            <span class="footer-me">© 2024 Copyright: Miracle</span>
+                        </p>
+                    </div>
                 </section>
                 <!-- Section: CTA -->
             </div>
             <!-- Grid container -->
-
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                © 2024 Copyright:
-                <a class="text-white" href="https://mdbootstrap.com/">Duy Tan</a>
-            </div>
-            <!-- Copyright -->
         </footer>
         <!-- Footer -->
     </section>
-    <!-- partial -->
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -27,7 +27,6 @@ namespace WebEnterprise.Controllers
         private static string AuthEmail = "betngaongo@gmail.com";
         private static string AuthPassword = "betngaongo";
 
-
         public ContributionController(IHttpContextAccessor httpContextAccessor, IWebHostEnvironment hostEnvironment,
             IUnitOfWork unitOfWork, IMapper mapper, INotyfService notyfService, IEmailSender emailSender)
         {
@@ -38,6 +37,7 @@ namespace WebEnterprise.Controllers
             _notyfService = notyfService;
             _emailSender = emailSender;
         }
+
         [HttpGet]
         public async Task<IActionResult> ContributionList(int id, string query, int? page)
         {

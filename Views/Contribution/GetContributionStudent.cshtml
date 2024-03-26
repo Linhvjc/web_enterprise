@@ -17,15 +17,13 @@
 
     $(document).ready(function () {
         $('#myModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); 
-            var id = button.data('id'); 
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
             $('#contributionId').val(id);
         });
     });
 
 </script>
-
-
 
 <div class="container custom-container">
     <div class="d-flex justify-content-center">
@@ -88,13 +86,15 @@
                                 </th>
                                 <th class="px-4 py-2 d-flex align-items-center gap-2 align-middle">
                                     <div class="p-2 rounded-circle bg-blue mybtn">
-                                        <a asp-area="" asp-controller="Contribution" asp-action="Detail" asp-route-id="@con.Id"><i class="fa-solid fa-eye text-blue"></i></a>
+                                        <a asp-area="" asp-controller="Contribution" asp-action="Detail"
+                                            asp-route-id="@con.Id"><i class="fa-solid fa-eye text-blue"></i></a>
 
                                     </div>
                                     <div class="p-2 rounded-circle bg-green mybtn">
-                                        <a href="" data-toggle="modal" data-target="#myModal" class="btn-unstyled modalBtn" data-id="@con.Id">
+                                        <a href="" data-toggle="modal" data-target="#myModal" class="btn-unstyled modalBtn"
+                                            data-id="@con.Id">
                                             <i class="fa-solid fa-pen-to-square text-green"></i>
-                                            </a>
+                                        </a>
                                     </div>
                                 </th>
                             </tr>
@@ -116,20 +116,26 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                  @using (Html.BeginForm("UpdateContribution", "Contribution", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
-                                @Html.AntiForgeryToken()
+                    @using (Html.BeginForm("UpdateContribution", "Contribution", FormMethod.Post, new
+                    {
+                        enctype =
+                    "multipart/form-data"
+                    }))
+                    {
+                        @Html.AntiForgeryToken()
 
                         <div class="form-frame pb-5">
                             <div class="cover-grid">
                                 <div class="form-group max-input">
                                     <label class="pb-1 ps-1 fs-3" asp-for="UpdateContribution.Title">Title</label>
                                     <input type="text" class="form-control" asp-for="UpdateContribution.Title">
-                                   
+
                                 </div>
                                 <div class="form-group mt-3 item-center d-flex justify-content-center align-items-center">
-                                    <label tabindex="0" asp-for="UpdateContribution.File" class="input-file-trigger">Select a file</label>                           
-                                    <input type="file" class="input-file" asp-for="UpdateContribution.File" accept=".doc,.docx">
+                                    <label tabindex="0" asp-for="UpdateContribution.File" class="input-file-trigger">Select
+                                        a file</label>
+                                    <input type="file" class="input-file" asp-for="UpdateContribution.File"
+                                        accept=".doc,.docx">
                                 </div>
                                 <input type="hidden" asp-for="UpdateContribution.Id" id="contributionId" value="" />
                                 <p class="file-return form-group mt-1 mb-1"></p>
@@ -139,14 +145,16 @@
                             <div class=" d-flex flex-column">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
-                                    <label class="form-check-label" for="termsCheckbox">I agree to the terms and conditions</label>
+                                    <label class="form-check-label" for="termsCheckbox">I agree to the terms and
+                                        conditions</label>
                                 </div>
 
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" id="submitBtn" onclick="submitFormAsPut()">Submit</button>
+                            <button type="submit" class="btn btn-primary" id="submitBtn"
+                                onclick="submitFormAsPut()">Submit</button>
                         </div>
 
                     }
@@ -164,4 +172,3 @@
         the_return.innerHTML = this.files[0].name;
     });
 </script>
-

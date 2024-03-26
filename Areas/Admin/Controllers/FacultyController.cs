@@ -31,7 +31,7 @@ namespace WebEnterprise.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateFaculty([Bind("Name,Description")]CreateFacultyModel facultyModel)
+        public async Task<IActionResult> CreateFaculty([Bind("Name,Description")] CreateFacultyModel facultyModel)
         {
             if (ModelState.IsValid)
             {
