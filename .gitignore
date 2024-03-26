@@ -120,3 +120,7 @@ src/.vs/config/applicationhost.config
 
 appsettings.json
 Properties/launchSettings.json
+
+.firebaserc
+firebase.json
+database.rules.json

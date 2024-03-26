@@ -22,8 +22,8 @@ namespace WebEnterprise.Controllers
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly IEmailSender _emailSender;
         public INotyfService _notyfService { get; }
-        private static string apiKey = "AIzaSyDxbWg5cX5zoEDrQCssfBGh5CZrRkAr8ro";
-        private static string Bucket = "webenterprise-8a158.appspot.com";
+        private static string apiKey = "AIzaSyAzEoZmxmem3If4E8ZIZaAqVdYbqEhLK7E";
+        private static string Bucket = "webenterprise-7182d.appspot.com";
         private static string AuthEmail = "betngaongo@gmail.com";
         private static string AuthPassword = "betngaongo";
 
