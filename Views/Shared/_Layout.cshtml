@@ -57,6 +57,9 @@
                         <li class="nav-item link">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Guide</a>
                         </li>
+                        <li class="nav-item link">
+                            <a class="nav-link text-dark" href="#contact">Contact</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav flex-row">
                         @if (!SignInManager.IsSignedIn(User))
@@ -115,6 +118,58 @@
     </header>
 
     @RenderBody()
+
+    <!-- ======================================================= -->
+    <!-- =========================CONTACT======================= -->
+    <!-- ======================================================= -->
+    <section class="contact-section" id="contact">
+        <div class="row">
+            <div class="col span-1-of-3">
+                <ul class="information">
+                    <li><i class="fas fa-map-marker-alt small-icon"></i>Address: An Khe, Gia Lai, VietNam</li>
+                    <li><i class="fas fa-envelope small-icon"></i>Email: tanndgcd191158@fpt.edu.vn</li>
+                    <li><i class="fas fa-phone small-icon"></i>Phone number: (+84) 096-192-0504</li>
+                </ul>
+                <ul class="social-icons">
+                    <li><i class="fab fa-facebook"></i></li>
+                    <li><i class="fab fa-twitter-square"></i></li>
+                    <li><i class="fab fa-instagram"></i></li>
+                    <li><i class="fab fa-google-plus-square"></i></li>
+                </ul>
+            </div>
+            <div class="col span-2-of-3 form">
+                <form class="fm-addform">
+                    <div class="row">
+                        <div class="col span-1-of-3 middle-input">
+                            <label class="lb-label">Name</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input class="ip-input" type="text" placeholder="Your Name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3 middle-input">
+                            <label class="lb-label">Email</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <input class="ip-input" type="email" placeholder="Your Email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3 middle-textarea">
+                            <label class="lb-label">Message</label>
+                        </div>
+                        <div class="col span-2-of-3">
+                            <textarea placeholder="Your Message"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" class="bt-button" value="Send">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <section class="footer">
         <!-- Footer -->
