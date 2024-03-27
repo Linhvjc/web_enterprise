@@ -8,12 +8,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
-  //  $(document).ready(function () {
+    $(document).ready(function () {
 
-  //      $("#submitBtn").click(function () {
-  //          $("#myModal").modal('hide');
-  //      });
-  //  });
+        $("#submitBtn").click(function () {
+            $("#myModal").modal('hide');
+        });
+    });
+
     $(document).ready(function () {
         $('#myModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget); 
@@ -106,7 +107,7 @@
     </div>
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" style="min-width: 900px;" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">Modal Title</h4>
@@ -154,4 +155,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    var the_return = document.querySelector(".file-return");
+    var fileInput = document.querySelector(".input-file");
+
+    fileInput.addEventListener("change", function (event) {
+        the_return.innerHTML = this.files[0].name;
+    });
+</script>
 

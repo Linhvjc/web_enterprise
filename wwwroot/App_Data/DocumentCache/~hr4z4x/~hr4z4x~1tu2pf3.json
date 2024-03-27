@@ -1,0 +1,31 @@
+{
+  "CacheSourceKey": "hr4z4x",
+  "CachePdfKey": "hr4z4x/hr4z4x-vxd29t.pdf",
+  "CacheXpzKey": "hr4z4x/hr4z4x-1tu2pf3.xpz",
+  "CacheInfoKey": "hr4z4x/hr4z4x-1tu2pf3.json",
+  "CacheCopyKey": null,
+  "Document": "Type=Url;File=\"https://firebasestorage.googleapis.com/v0/b/webenterprise-8a158.appspot.com/o/assets%2Fc40d3d9c-e9c7-4e20-b86d-bb920fe1e859.docx?alt=media&token=0bab611c-1fb1-468c-a8d6-1af02df067c7\"",
+  "DocumentFileName": "c40d3d9c-e9c7-4e20-b86d-bb920fe1e859.docx",
+  "DownloadFileName": null,
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": "c40d3d9c-e9c7-4e20-b86d-bb920fe1e859.docx",
+    "UpdateFields": true,
+    "Encoding": null,
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Attachments": [],
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "hr4z4x",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  },
+  "Attachments": []
+}

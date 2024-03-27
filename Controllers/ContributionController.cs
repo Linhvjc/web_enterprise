@@ -9,6 +9,8 @@ using WebEnterprise.Repositories.Abstraction;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using System.Text;
 using WebEnterprise.Models.Entities;
+using X.PagedList;
+using AspNetCoreHero.ToastNotification.Notyf;
 
 namespace WebEnterprise.Controllers
 {
@@ -37,15 +39,39 @@ namespace WebEnterprise.Controllers
             _emailSender = emailSender;
         }
         [HttpGet]
-        public async Task<IActionResult> ContributionList(int id)
+        public async Task<IActionResult> ContributionList(int id, string query, int? page)
         {
             ViewBag.Id = id;
-            var contributions = await _unitOfWork.ContributionRepository.GetAllContributions(id);
-            var ContributionList = new ContributionList
+            ViewBag.StoredQuery = query;
+            _httpContextAccessor.HttpContext.Session.SetInt32("MegazineId", id);
+            List<GetContributionModel> contributions = await _unitOfWork.ContributionRepository.SearchContribution(id, query);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            var auth = new FirebaseAuthProvider(new FirebaseConfig(apiKey));
+            var a = await auth.SignInWithEmailAndPasswordAsync(AuthEmail, AuthPassword);
+            var storage = new FirebaseStorage(Bucket, new FirebaseStorageOptions
             {
-                Contributions = contributions
-            };
-            return View(ContributionList);
+                AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
+            });
+            var listFile = new List<string>();
+            try
+            {
+                foreach (var con in contributions)
+                {
+                    var conReference = storage.Child("assets").Child(con.FilePath);
+                    var downloadConTask = conReference.GetDownloadUrlAsync();
+                    var conPath = await downloadConTask;
+                    listFile.Add(conPath);
+                }
+                ViewBag.ContributionPaths = listFile;
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ContributionPaths = null;
+            }
+
+            return View(contributions.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]
@@ -84,7 +110,7 @@ namespace WebEnterprise.Controllers
                             new FirebaseStorageOptions
                             {
                                 AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
-                                ThrowOnCancel = true 
+                                ThrowOnCancel = true
                             })
                             .Child("assets")
                             .Child($"{uniqueFileName}")
@@ -130,18 +156,19 @@ namespace WebEnterprise.Controllers
         [HttpGet]
         public async Task<IActionResult> Detail(int id)
         {
-           
+
             var contribution = await _unitOfWork.ContributionRepository.GetContributionWithRelevant(id);
+            contribution.FacultyUserName = await _unitOfWork.UserRepository.FindUserName(contribution.FacultyUserName);
 
             var auth = new FirebaseAuthProvider(new FirebaseConfig(apiKey));
             var a = await auth.SignInWithEmailAndPasswordAsync(AuthEmail, AuthPassword);
             var storage = new FirebaseStorage(Bucket, new FirebaseStorageOptions
             {
-                AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken), 
+                AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
             });
             var reference = storage.Child("assets").Child(contribution.FilePath);
             var listImagePath = new List<string>();
-           
+
             try
             {
                 // Get a download URL for the file
@@ -213,7 +240,7 @@ namespace WebEnterprise.Controllers
                         try
                         {
                             var contribution = await _unitOfWork.ContributionRepository.GetById(updateContribution.Id);
-                            if(contribution == null)
+                            if (contribution == null)
                             {
                                 _notyfService.Information("failed:" + updateContribution.Id);
                                 return RedirectToAction("GetContributionStudent", "Contribution");
@@ -240,7 +267,6 @@ namespace WebEnterprise.Controllers
                 return RedirectToAction("GetContributionStudent", "Contribution");
             }
         }
-
     }
 
 }

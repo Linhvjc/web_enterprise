@@ -77,6 +77,7 @@ builder.Services.AddScoped<IMegazineRepository, MegazineRepository>();
 builder.Services.AddScoped<IContributionRepository, ContributionRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

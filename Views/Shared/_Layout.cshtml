@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @*<link rel="stylesheet" href="~/MVCApp.styles.css" asp-append-version="true" />*@
 </head>
 <body>
     <style>
@@ -91,7 +90,7 @@
                                 <i class="fa-solid fa-chevron-down my-icon"></i>
                             </div>
                             <div class="dropdown-list w-50 shadow-lg drop-list">
-                                <a class="hover-item" asp-action="Logout" asp-controller="Authentication" >
+                                <a class="hover-item" asp-action="Logout" asp-controller="Authentication">
                                     <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
                                         <div class="p-2 bg-gray change-item rounded-2">
                                             <i class="fa-solid fa-user change-icon"></i>
@@ -125,104 +124,9 @@
         </div>
     </header>
 
-    <section class="doc_banner_area search-banner-light">
-        <div class="container">
-            <div class="doc_banner_content" style="max-width: 600px;">
-                <form action="#" class="header_search_form">
-                    <div class="form-group" style="position: relative;">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" class="form-control search" placeholder="Search for...">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
 
-    <section class="page_breadcrumb">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-7">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="#">Home</a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="#">Help</a>
-                            </li>
-                            <li class="breadcrumb-item active">
-                                <a href="#">Forum</a>
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-                <div class="col-sm-5">
-                    <a href="#" class="date">
-                        <i class="icon_clock_alt"></i>
-                        Updated on March 03, 2020
+    @RenderBody()
 
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="doc_blog_grid_area sec_pad forum-page-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9">
-                    @RenderBody()
-                </div>
-                <div class="col-lg-3">
-                    <div class="forum_sidebar">
-                        <div class="widget status_widget">
-                            <h4 class="c_head">Information</h4>
-                            <p class="status">
-                                Support is
-                                <span class="offline">Offline</span>
-                            </p>
-                            <div class="information-contact">
-                                <h6>Please contact here: <a class="contact" href="#">here</a></h6>
-                            </div>
-                        </div>
-                        <div class="widget ticket_widget">
-                            <h4 class="c_head">Category</h4>
-                            <ul class="list-unstyled ticket_categories">
-                                <li>
-                                    <img src="~/images/answer.png" alt="category" style="width: 30px;">
-                                    <a href="#">Docs WordPress Theme</a>
-                                    <span class="count">10</span>
-                                </li>
-                                <li>
-                                    <img src="~/images/answer.png" alt="category" style="width: 30px;">
-                                    <a href="#">Docs WordPress Theme</a>
-                                    <span class="count">10</span>
-                                </li>
-                                <li>
-                                    <img src="~/images/answer.png" alt="category" style="width: 30px;">
-                                    <a href="#">Docs WordPress Theme</a>
-                                    <span class="count">10</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="widget tag_widget">
-                            <h4 class="c_head">Tags</h4>
-                            <ul class="list-unstyled w_tag_list style-light">
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Computing</a></li>
-                                <li><a href="#">Graphic Designing</a></li>
-                                <li><a href="#">Marketing</a></li>
-                                <li><a href="#">Accounting</a></li>
-                                <li><a href="#">Construction</a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <footer class="border-top footer text-muted">
         <div class="container">
@@ -232,6 +136,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await Component.InvokeAsync("Notyf")
     @RenderSection("Scripts", required: false)
 </body>

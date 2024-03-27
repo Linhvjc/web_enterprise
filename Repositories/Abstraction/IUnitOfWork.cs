@@ -8,5 +8,6 @@
         ISemesterRepository SemesterRepository { get; }
         IUserRepository UserRepository { get; }
         IImageRepository ImageRepository { get; }
+        ICommentRepository CommentRepository { get; }
     }
 }
