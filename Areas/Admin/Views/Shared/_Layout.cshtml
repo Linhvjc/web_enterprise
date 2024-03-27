@@ -1,3 +1,13 @@
+﻿@using System.Text.Json
+@using WebEnterprise.Models.Entities
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@inject SignInManager<User> SignInManager
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var session = HttpContextAccessor.HttpContext.Session;
+    var userName = session.GetString("UserName");
+}
 ﻿﻿
 <!DOCTYPE html>
 <html lang="en">
@@ -7,23 +17,94 @@
     <title>@ViewData["Title"] - Assignment</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/css/site.css" asp-append-version="true" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css" />
 </head>
 <body>
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm" style="justify-content: space-between; padding: 30px 0">
+                <div class="navbar-nav">
+                    <a class="navbar-brand" href="#">
+                        <img src="~/images/logo-2x.png" alt="Avatar Logo" style="width:100px;">
+                    </a>
+                    <div class="search-input d-flex">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <button class="btn btn-primary" type="button">Search</button>
+                    </div>
+                </div>
+                <ul class="navbar-nav flex-row mr-auto">
+                    <li class="nav-item link">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    @* <li class="nav-item link">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Privacy</a>
+                    </li>
+                    <li class="nav-item link">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Guide</a>
+                    </li> *@
 
-        @RenderBody()
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Content Managment
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Faculty" asp-action="Index">Faculty</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Semester" asp-action="Index">Semester</a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Account" asp-action="Create">Create User</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Account" asp-action="Index">Manage User</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+                <ul class="navbar-nav flex-row mr-auto">
+                    @if (!SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item link">
+                            <a class="fs-5 text-primary text-hover" asp-area="" asp-controller="Authentication" asp-action="Login">Login</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item link">Hello @userName</li>
+                        <li class="nav-item link"><a class="fs-5 text-primary text-hover pe-2" asp-action="ViewProfile" asp-controller="Account">Profile </a></li>
+                        <li class="nav-item link"><a class="fs-5 text-primary text-hover" asp-action="Logout" asp-controller="Authentication">Logout </a></li>
+                    }
 
-        <footer class="footer">
-            <div class="container-fluid d-flex justify-content-between">
-                <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Admin © 2024 </span>
-                <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"> admin template from Thien</span>
-            </div>
-        </footer>
-        <!-- partial -->
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+    @RenderBody()
+
+    <footer class="footer">
+        <div class="container-fluid d-flex justify-content-between">
+            @* <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Admin © 2024 </span>
+            <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"> admin template from Thien</span> *@
+        </div>
+    </footer>
+    <!-- partial -->
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
+
+
     @await Component.InvokeAsync("Notyf")
     @RenderSection("Scripts", required: false)
 </body>

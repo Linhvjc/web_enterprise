@@ -1,0 +1,40 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model WebEnterprise.Models.Entities.Semester
+
+@{
+    ViewData["Title"] = "Falcuty Dashboard";
+    Layout = "../../Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-9 grid-margin stretch-card" style="margin-left: 200px; margin-top: 100px;">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title text-center">Add a new Semester</h4>
+            <p class="card-description">Input the information below </p>
+            <form class="forms-sample" asp-area="Admin" asp-controller="Semester" asp-action="Create" method="post">
+                <div class="form-group">
+                    <label asp-for="Name">Name Semester</label>
+                    <input type="text" class="form-control" asp-for="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @* <label asp-for="StartDate">Start Date</label>
+                    <input type="text" class="form-control" asp-for="StartDate">
+                    <span asp-validation-for="StartDate" class="text-danger"></span> *@
+
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndDate" class="control-label">End Date</label>
+                    <input class="form-control" asp-for="EndDate">
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

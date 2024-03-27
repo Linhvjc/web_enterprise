@@ -9,7 +9,7 @@
 <div class="col-9 grid-margin stretch-card" style="margin-left: 200px; margin-top: 100px;">
     <div class="card">
         <div class="card-body">
-            <form method="post" asp-area="Admin" asp-controller="Account" asp-action="CreateAccount">
+            <form method="post" asp-area="Admin" asp-controller="Account" asp-action="Create">
                 <div class="row" style="color:red">
                     @if (TempData["msg"] != null)
                     {
@@ -66,6 +66,7 @@
                     <select id="roleDropdown" name="Role" asp-for="Role" class="form-control">
                         <option value="">-- Select Role --</option>
                         <option value="Student">Student</option>
+                        <option value="Admin">Admin</option>
                         <option value="Coordinator">Coordinator</option>
                         <option value="Manager">Manager</option>
                     </select>
