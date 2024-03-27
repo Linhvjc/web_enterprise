@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebEnterprise.Models.Entities.Contribution>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+    <table class="table">
+       
+           <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    Faculty
+                <th>
+                    @Html.DisplayNameFor(model => model.MegazineId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th></th>
+            </tr>   
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                    <td>
+                    @item.User.Faculty.Name
+                    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MegazineId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                        @if (item.User.FacultyId == ViewBag.FacultyId)
+                        {
+                        <a class="btn btn-primary" href="@Url.Action("EditContribution", "ControllerName", new { area = "Coordinator", id = item.Id })">Edit</a>
+                        <button>Delete</button>
+                        }
+                </td>
+            </tr>
+        }
+    </tbody>
+    </table>
+
+

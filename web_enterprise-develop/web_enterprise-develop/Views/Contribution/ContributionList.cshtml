@@ -1,0 +1,207 @@
+﻿﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@model IPagedList<WebEnterprise.ViewModels.Contribution.GetContributionModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<section class="doc_banner_area search-banner-light">
+    <div class="container">
+        <div class="doc_banner_content" style="max-width: 600px;">
+            <form asp-controller="Contribution" asp-action="ContributionList" method="get" class="header_search_form">
+                <div class="form-group" style="position: relative;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" name="query" class="form-control search" placeholder="Search for...">
+                    <input type="hidden" name="id" value="@ViewBag.Id" />
+                    <button type="submit" class="searchBtn">search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="page_breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Home" asp-action="Index">Contribution</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a asp-controller="Contribution" asp-action="ContributionList" asp-id="@ViewBag.Id">Model[0].Megazine</a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-sm-5">
+                <a href="#" class="date">
+                    <i class="icon_clock_alt"></i>
+                    Updated on March 03, 2020
+
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="doc_blog_grid_area sec_pad forum-page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+
+
+                <div class="answer-action shadow">
+                    <div class="action-content">
+                        <div class="image-wrap">
+                            <img src="~/images/answer.png" alt="answer">
+                        </div>
+                        <div class="content">
+                            <h2 class="ans-title">Want to make some contribution @ViewBag.Id</h2>
+                            <p> Contribute your blog and get reward now!!! </p>
+                        </div>
+                    </div>
+                    <div class="action-button-container">
+                        <a asp-controller="Contribution" asp-action="Post" asp-route-megazineId="@ViewBag.Id" class="action_btn btn-ans">Post a contribution</a>
+                    </div>
+                </div>
+
+                <div class="flex justify-content-end my-3">
+                    <form action="@Url.Action("DownloadFiles", "File")" method="get">
+                        @if (ViewBag.ContributionPaths != null)
+                        {
+                            foreach (var filePath in ViewBag.ContributionPaths)
+                            {
+                                <input type="hidden" name="files" value="@filePath" />
+                            }
+                        }
+                        <button class="btn btn-primary" type="submit">Download All Files</button>
+                    </form>
+
+
+                </div>
+                    
+                <div class="post-header" style="margin-top: 100px;">
+                    <ul class="support-total-info">
+                        <li class="open-ticket">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <a href="">8 Opens</a>
+                        </li>
+                        <li class="open-ticket">
+                            <i class="fa-solid fa-check"></i>
+                            <a id="check">12 Closed</a>
+                        </li>
+                        <li class="open-ticket">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <a id="check">Reset</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="load-forum">
+                    <div class="community-posts-wrapper bb-radius">
+                        @foreach (var con in Model)
+                        {
+                            <div class="community-post style-two">
+                                <div class="post-content">
+                                    <div class="freshness-bottom" style="padding-right: 20px;">
+                                        <div class="freshness-name">
+                                            <a asp-controller="Contribution" asp-action="Detail" asp-route-id="@con.Id" class="bbp-author-link" class="bbp-author-link">
+                                                <span class="bbp-author-name">@con.FullName</span>
+                                            </a>
+                                        </div>
+                                        <span class="bbp-author-avatar">
+                                            <img src="~/Images/face/face1.jpg" alt="name" style="width: 55%;">
+                                        </span>
+                                    </div>
+                                    <div class="entry-content">
+                                        <a asp-controller="Contribution" asp-action="Detail" asp-route-id="@con.Id" class="bbp-author-link" class="bbp-author-link">
+                                            <h3 class="post-title">@con.Title</h3>
+                                        </a>
+                                        <ul class="meta">
+                                            <li><a href=""> ASP.Net technology</a></li>
+                                            <li><i class="fa-solid fa-clock"></i> @con.CreatedDate</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="post-meta-wrapper">
+                                    <ul class="post-meta-info">
+                                        <li>
+                                            <a href=""><i class="fa-regular fa-comment" style="margin-right: 4px;"></i>@con.ReplyCount</a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="fa-sharp fa-solid fa-star" style="margin-right: 4px;"></i>3</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-md12">                        
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("ContributionList","Contribution", new {id = ViewBag.Id , query = ViewBag.StoredQuery,page = page, }))
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-3">
+                <div class="forum_sidebar">
+                    <div class="widget status_widget">
+                        <h4 class="c_head">Information</h4>
+                        <p class="status">
+                            Support is
+                            <span class="offline">Offline</span>
+                        </p>
+                        <div class="information-contact">
+                            <h6>Please contact here: <a class="contact" href="#">here</a></h6>
+                        </div>
+                    </div>
+                    <div class="widget ticket_widget">
+                        <h4 class="c_head">Category</h4>
+                        <ul class="list-unstyled ticket_categories">
+                            <li>
+                                <img src="~/images/answer.png" alt="category" style="width: 30px;">
+                                <a href="#">Docs WordPress Theme</a>
+                                <span class="count">10</span>
+                            </li>
+                            <li>
+                                <img src="~/images/answer.png" alt="category" style="width: 30px;">
+                                <a href="#">Docs WordPress Theme</a>
+                                <span class="count">10</span>
+                            </li>
+                            <li>
+                                <img src="~/images/answer.png" alt="category" style="width: 30px;">
+                                <a href="#">Docs WordPress Theme</a>
+                                <span class="count">10</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget tag_widget">
+                        <h4 class="c_head">Tags</h4>
+                        <ul class="list-unstyled w_tag_list style-light">
+                            <li><a href="#">Business</a></li>
+                            <li><a href="#">Computing</a></li>
+                            <li><a href="#">Graphic Designing</a></li>
+                            <li><a href="#">Marketing</a></li>
+                            <li><a href="#">Accounting</a></li>
+                            <li><a href="#">Construction</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
