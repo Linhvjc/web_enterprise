@@ -5,6 +5,7 @@ using WebEnterprise.ViewModels.Contribution;
 using WebEnterprise.ViewModels.Faculty;
 using WebEnterprise.ViewModels.Imgae;
 using WebEnterprise.ViewModels.Megazine;
+using WebEnterprise.ViewModels.Semester;
 
 namespace WebEnterprise.Mapping
 {
@@ -31,6 +32,9 @@ namespace WebEnterprise.Mapping
             CreateMap<Image, CreateImage>().ReverseMap();
 
             CreateMap<Comment, CreateComment>().ReverseMap();
+
+            CreateMap<Semester, CreateSemester>().ReverseMap();
+            CreateMap<Semester, UpdateSemester>().ReverseMap();
         }
 
 

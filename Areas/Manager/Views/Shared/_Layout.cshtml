@@ -1,0 +1,111 @@
+﻿@using System.Text.Json
+@using WebEnterprise.Models.Entities
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@inject SignInManager<User> SignInManager
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var session = HttpContextAccessor.HttpContext.Session;
+    var userName = session.GetString("UserName");
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVCApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/managerSite.css" asp-append-version="true" />
+</head>
+<body>
+    <style>
+        a {
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: #64748b;
+        }
+    </style>
+    <div class="relative flex fill">
+        <div class="sidebar">
+            <div class="header">
+                <div class="sidebar_menu">
+                    <div class="menu-group">
+                        
+                        <h3 class="header">Manager Dashboard</h3>
+                        <ul id="menuItems" class="menu-items" style="padding-left: 0px">
+                            <li class="dashboard-item">
+                                <i class="fa-solid fa-house text-white"></i>
+                                <a class="" href="https://localhost:38181/Manager/Dashboard">Dashboard</a>
+                            </li>
+                            <li class="dashboard-item">
+                                <i class="fa-solid fa-list text-white"></i>
+                                <a class="" href="#">Contribution List</a>
+                            </li>
+
+                        </ul>
+                        <h3 class="small-heading mt-5">Others</h3>
+                        <ul class="" style="padding-left: 0px">
+                            <li class="dashboard-item">
+                                <i class="fa-solid fa-right-from-bracket text-white"></i>
+                                <a class="" href="#">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="position-relative d-flex flex-grow-1 flex-col overflow-auto full-width">
+            <header>
+                <div class="container bg-header bg-white">
+                    <nav class="" style="padding: 10px 10px">
+                        <div class="d-flex align-items-center justify-content-between header-card">
+                            <a class="navbar-brand padding-left-icon" href="#">
+                                <i class="fa-solid fa-bars"></i>
+                            </a>
+                            <div class="d-flex align-items-center justify-content-end">
+                                <a class="navbar-brand" href="#">
+                                    <img src="~/images/face/admin.png" alt="Avatar Logo" style="width:60px; border-radius: 50%">
+                                </a>
+                                <h5>Welcome Manager</h5>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+
+            <div class=" dashboard-color">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var currentUrl = window.location.href;
+
+            $('#menuItems li').each(function () {
+                var menuItemUrl = $(this).find('a').attr('href');
+
+                if (currentUrl === menuItemUrl) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
+
+    @await Component.InvokeAsync("Notyf")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

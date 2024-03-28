@@ -1,4 +1,4 @@
-﻿@model WebEnterprise.Models.Entities.Semester
+﻿@model WebEnterprise.ViewModels.Semester.UpdateSemester
 
 @{
     ViewData["Title"] = "Index";
@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="card-body p-4">
-        <form method="post">
+        <form method="post" asp-area="Admin" asp-controller="Semester" asp-action="Edit" >
             <input asp-for="Id" hidden />
             <div class="border p-3 mt-4">
                 @*<div asp-validation-summary="ModelOnly"></div>*@

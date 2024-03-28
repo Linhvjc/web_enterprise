@@ -8,6 +8,6 @@ namespace WebEnterprise.Models.Entities
         [Required]
         public string Name { get; set; }
         public string? Description { get; set; }
-        //public List<Megazine> Megazines { get; set; }
+        public List<Megazine> Megazines { get; set; }
     }
 }

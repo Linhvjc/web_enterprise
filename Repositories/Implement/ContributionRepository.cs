@@ -49,6 +49,35 @@ namespace WebEnterprise.Repositories.Implement
             return contributions;
         }
 
+        public async Task<List<StatisticContribution>> GetContributionsWithout()
+        {
+            return await _dbContext.Contributions
+                .Where(c => c.Comments.Count() == 0)
+                .Select(c => new StatisticContribution
+                {
+                    Id = c.Id,
+                    Title = c.Title,
+                    CreatedDate = c.CreatedDate,
+                    MegazineName = c.Megazine.Name,
+                    FacultyName = c.Megazine.Faculty.Name
+                }).ToListAsync();
+        }
+
+        public async Task<List<StatisticContribution>> GetContributionsWithout14()
+        {
+           
+            return await _dbContext.Contributions
+                .Where(c => c.Comments.Count() == 0 && DateTime.UtcNow > c.CreatedDate.AddDays(14))
+               .Select(c => new StatisticContribution
+               {
+                   Id = c.Id,
+                   Title = c.Title,
+                   CreatedDate = c.CreatedDate,
+                   MegazineName = c.Megazine.Name,
+                   FacultyName = c.Megazine.Faculty.Name
+               }).ToListAsync();
+        }
+
         public async Task<DetailContribution> GetContributionWithRelevant(int id)
         {
 
@@ -69,9 +98,9 @@ namespace WebEnterprise.Repositories.Implement
                     FacultyId = c.Megazine.FacultyId,
                     numberContribution = _dbContext.Contributions.Count(u => u.UserId == c.UserId),
                     imagePaths = c.Images.Where(i => i.ContributionId == c.Id).Select(i => i.FilePath).ToList(),
-                    Comment = c.Comments[0].CommentText,
-                    CreatedCommentDate = c.Comments[0].CreatedDate,
-                    FacultyUserName = c.Comments[0].UserId
+                    Comment = c.Comments.Any() ? c.Comments[0].CommentText : null,
+                    CreatedCommentDate = c.Comments.Any() ? c.Comments[0].CreatedDate : DateTime.MinValue,
+                    FacultyUserName = c.Comments.Any() ? c.Comments[0].UserId : null
                 })
                 .FirstOrDefaultAsync();
 
@@ -88,6 +117,31 @@ namespace WebEnterprise.Repositories.Implement
             }
 
             var contributions = await conQuery.Where(con => con.MegazineId == megazineId)
+                .Select(c => new GetContributionModel
+                {
+                    Id = c.Id,
+                    Title = c.Title,
+                    CreatedDate = c.CreatedDate,
+                    FullName = c.User.FullName,
+                    ProfilePicture = c.User.ProfilePicture,
+                    ReplyCount = c.Comments.Count(),
+                    Megazine = c.Megazine.Name,
+                    FilePath = c.FilePath,
+                })
+                .ToListAsync();
+
+            return contributions;
+        }
+
+        public async Task<List<GetContributionModel>> SearchContribution(string semester)
+        {
+            IQueryable<Contribution> conQuery = _dbContext.Contributions;
+            if (!string.IsNullOrEmpty(semester) && semester != "All")
+            {
+                conQuery = conQuery.Where(c => c.Megazine.Semester.Name == semester);
+            }
+
+            var contributions = await conQuery
                 .Select(c => new GetContributionModel
                 {
                     Id = c.Id,

@@ -1,5 +1,5 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model WebEnterprise.Models.Entities.Semester
+@model WebEnterprise.ViewModels.Semester.CreateSemester
 
 @{
     ViewData["Title"] = "Falcuty Dashboard";
@@ -18,9 +18,6 @@
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    @* <label asp-for="StartDate">Start Date</label>
-                    <input type="text" class="form-control" asp-for="StartDate">
-                    <span asp-validation-for="StartDate" class="text-danger"></span> *@
 
                     <label asp-for="StartDate" class="control-label"></label>
                     <input asp-for="StartDate" class="form-control" />

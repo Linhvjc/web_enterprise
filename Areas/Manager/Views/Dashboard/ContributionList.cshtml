@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "Contribution List";
+    Layout = "../../Views/Shared/_Layout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+<script>
+    function convertToDate(date) {
+        var createdDate = new Date(date);
+        var day = createdDate.getDate().toString().padStart(2, '0');
+        var month = (createdDate.getMonth() + 1).toString().padStart(2, '0');
+        var year = createdDate.getFullYear();
+        return day + "/" + month + "/" + year;
+    }
+
+    function createAndInsertForm(files) {
+        files.map((item) => console.log(item))
+        var form = $('<form>', {
+            'action': '@Url.Action("DownloadFiles", "File", new { area = "" })',
+            'method': 'get'
+        });
+        $.each(files, function (index, filePath) {
+            $(form).append($('<input>', {
+                'type': 'hidden',
+                'name': 'files',
+                'value': filePath
+            }));
+        });
+
+        $(form).append($('<button>', {
+            'type': 'submit',
+            'class': 'btn btn-primary',
+            'text': 'Download All Files'
+        }));
+
+        $('#formContainer').empty().append(form);
+    }
+
+    function displayData(data) {
+        $('#dataContainer').empty();
+        for (var i = 0; i < data.length; i++) {
+            var item = data[i];
+            var rowClass = (i % 2 === 0) ? "even-row" : "odd-row";
+            var rowContainer = $('<div>').addClass('con-body ' + rowClass);
+            var gridTemplate = $('<div>').addClass('grid-template2');
+            var indexColumn = $('<div>').addClass('col-span-3 ms-3').text(item.title);
+            var semesterNameColumn = $('<div>').addClass('col-span-2').text(item.fullName);
+            var facultyNameColumn = $('<div>').addClass('col-span-2').text(item.megazine);
+            var contributionCountColumn = $('<div>').addClass('col-span-2').text(convertToDate(item.createdDate));
+            var contributorCountColumn = $('<a>').addClass('col-span-1 btn btn-primary me-2').text("View Detail");
+            contributorCountColumn.attr('href', `/contribution/detail/${item.id}`);
+
+            gridTemplate.append(indexColumn, semesterNameColumn, facultyNameColumn, contributionCountColumn, contributorCountColumn);
+            rowContainer.append(gridTemplate);
+            $('#dataContainer').append(rowContainer);
+        }
+    }
+
+    $(document).ready(function () {
+        loadData();
+        console.log(files)
+        
+
+        $('#facultyDropdown').change(function () {
+            var selectedSemester = $(this).val();
+            loadData(selectedSemester);
+        });
+    });
+
+    function loadData(selectedSemester) {
+        $.ajax({
+            url: '/manager/dashboard/contributionData',
+            type: 'GET',
+            data: { semester: selectedSemester },
+            success: function (response) {
+                var files = [];
+                displayData(response);
+                files = response.map(function (obj) {
+                    return obj.filePath;
+                });
+                createAndInsertForm(files);
+                
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
+
+</script>
+
+
+<div class="padding-left-content">
+    <div class="ps-5 text-black mt-5 mx-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="form-outline mb-4">
+                <select id="facultyDropdown" asp-items="(SelectList)ViewBag.SemesterList" class="form-control">
+                    <option value="">-- Select A Semester --</option>
+                </select>
+            </div>
+            <div id="formContainer"></div>
+        </div>
+    </div>
+    <div class="ps-5">
+        <div class="mt-5 padding-width">
+            <h4 class="display-5">Table of Contributons</h4>
+            <div class="con-table">
+                <div class="con-header">
+                    <div class="grid-template2">
+                        <div class="col-span-3 ms-2">Name File</div>
+                        <div class="col-span-2">Author</div>
+                        <div class="col-span-2">Megazine</div>
+                        <div class="col-span-2">Author</div>
+                        <div class="col-span-1">View Detail</div>
+                    </div>
+                </div>
+                <div id="dataContainer">
+
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>

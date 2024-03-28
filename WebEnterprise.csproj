@@ -44,7 +44,8 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="ViewModels\Semester\" />
+    <Folder Include="Areas\Manager\Data\" />
+    <Folder Include="Areas\Manager\Models\" />
     <Folder Include="wwwroot\Admin\" />
     <Folder Include="wwwroot\images\face\" />
   </ItemGroup>
