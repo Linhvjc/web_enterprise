@@ -21,6 +21,11 @@ namespace WebEnterprise.Mapping
             CreateMap<Megazine, GetMegazineModel>()
                 .ForMember(dest => dest.FacultyName, act => act.MapFrom(src => src.Faculty.Name))
                 .ReverseMap();
+            CreateMap<CreateMegazineModel, Megazine>()
+                .ReverseMap();
+            CreateMap<EditMegazineModel, Megazine>()
+                .ReverseMap();
+
             CreateMap<Contribution, CreateContribution>().ReverseMap();
             CreateMap<Contribution, DetailContribution>()
                 .ForMember(dest => dest.FullName, act => act.MapFrom(src => src.User.FullName))
@@ -35,6 +40,11 @@ namespace WebEnterprise.Mapping
 
             CreateMap<Semester, CreateSemester>().ReverseMap();
             CreateMap<Semester, UpdateSemester>().ReverseMap();
+            CreateMap<Semester, GetSemesterAdmin>()
+              .ForMember(dest => dest.SemesterId, opt => opt.MapFrom(src => src.Id))
+              .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+              .ReverseMap();
+
         }
 
 

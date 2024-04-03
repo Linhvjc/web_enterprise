@@ -17,5 +17,6 @@ namespace WebEnterprise.Models.Entities
         [ForeignKey("SemesterId")]
         public Semester Semester { get; set; }
         public List<Contribution> Contributions { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }
