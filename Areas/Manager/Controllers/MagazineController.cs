@@ -1,9 +1,9 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Packaging.Signing;
 using WebEnterprise.Infrastructure.Persistance;
 using WebEnterprise.Models.Entities;
 using WebEnterprise.Repositories.Abstraction;
@@ -15,7 +15,7 @@ using WebEnterprise.ViewModels.Semester;
 namespace WebEnterprise.Areas.Manager.Controllers
 {
     [Area("Manager")]
-    public class MegazineController : Controller
+    public class MagazineController : Controller
     {
         private readonly UniversityDbContext _context;
         private readonly IUnitOfWork _unitOfWork;
@@ -25,7 +25,7 @@ namespace WebEnterprise.Areas.Manager.Controllers
 
         public INotyfService _notyfService { get; }
 
-        public MegazineController(UniversityDbContext context, IUnitOfWork unitOfWork, IMapper mapper, INotyfService notyfService, IHttpContextAccessor httpContextAccessor)
+        public MagazineController(UniversityDbContext context, IUnitOfWork unitOfWork, IMapper mapper, INotyfService notyfService, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _unitOfWork = unitOfWork;
@@ -38,8 +38,9 @@ namespace WebEnterprise.Areas.Manager.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var megazines = _context.Megazines.Where(e => !e.IsDeleted).Include(m => m.Faculty);
-            return View(await megazines.ToListAsync());
+            var AllMegazines = _unitOfWork.MegazineRepository.GetAll2(includeProperties: "Faculty,Semester");
+            var ViewMegazines = AllMegazines.Where(e => !e.IsDeleted);
+            return View(ViewMegazines.ToList());
         }
 
         // GET: Magazine/Create
@@ -49,8 +50,8 @@ namespace WebEnterprise.Areas.Manager.Controllers
             var faculties = await _unitOfWork.FacultyRepository.GetAll();
             var semesters = await _unitOfWork.SemesterRepository.GetAll();
             // Assuming you have a SemesterRepository similar to FacultyRepository
-           var viewFacultyList = _mapper.Map<List<GetFacultyModel>>(faculties);
-           var viewSemesters= _mapper.Map<List<GetSemesterAdmin>>(semesters);
+            var viewFacultyList = _mapper.Map<List<GetFacultyModel>>(faculties);
+            var viewSemesters = _mapper.Map<List<GetSemesterAdmin>>(semesters);
             ViewBag.Faculties = new SelectList(viewFacultyList, "FacultyId", "Name");
             ViewBag.Semesters = new SelectList(viewSemesters, "SemesterId", "Name");
 
@@ -231,59 +232,32 @@ namespace WebEnterprise.Areas.Manager.Controllers
             return View(megazineModel);
         }
 
-
-
-
-
-
-
-
-
+        #region API CALLS
         [HttpGet]
-        public async Task<IActionResult> Contributions(int id)
+        public IActionResult GetAll()
         {
-
-            int? facultyId = _httpContextAccessor.HttpContext.Session.GetInt32("FacultyId");
-
-            // Đặt FacultyId vào ViewBag để truyền nó vào view
-            ViewBag.FacultyId = facultyId;
-
-#pragma warning disable CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
-            var megazine = await _context.Megazines
-                                         .Include(m => m.Contributions)
-                                             .ThenInclude(c => c.User)
-                                             .ThenInclude(u => u.Faculty)
-                                         .FirstOrDefaultAsync(m => m.Id == id);
-#pragma warning restore CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
-
-            if (megazine == null)
-            {
-                return NotFound();
-            }
-
-            return View(megazine.Contributions);
+            var AllMegazines = _unitOfWork.MegazineRepository.GetAll2(includeProperties: "Faculty,Semester");
+            var ViewMegazines = AllMegazines.Where(e => !e.IsDeleted)
+                .Select(m => new
+                {
+                    m.Id,
+                    m.Name,
+                    m.Description,
+                    m.StartDate,
+                    m.EndDate,
+                    m.ImagePath,
+                    m.FacultyId,
+                    Faculty = new
+                    {
+                        m.Faculty.Name,
+                    },
+                    Semester = new
+                    {
+                        m.Semester.Name,
+                    },
+                }).ToList();
+            return Json(new { data = ViewMegazines });
         }
-
-        [HttpPost]
-        public async Task<IActionResult> ToggleContributionStatus(int id)
-        {
-            var contribution = await _context.Contributions.FindAsync(id);
-            if (contribution == null)
-            {
-                return NotFound();
-            }
-
-            // Đổi trạng thái giữa "Append" và "Accept"
-            contribution.Status = contribution.Status == "Append" ? "Accept" : "Append";
-            _context.Contributions.Update(contribution);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Contributions), new { id = contribution.MegazineId }); // Quay trở lại danh sách Contributions với id của Megazine
-        }
-
-
-
-
-
+        #endregion
     }
 }

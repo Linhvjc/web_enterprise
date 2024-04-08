@@ -18,8 +18,10 @@
     <title>@ViewData["Title"] - MVCApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/managerSite.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css" />
 </head>
 <body>
     <style>
@@ -41,7 +43,11 @@
                         <ul id="menuItems" class="menu-items" style="padding-left: 0px">
                             <li class="dashboard-item">
                                 <i class="fa-solid fa-house text-white"></i>
-                                <a class="" href="https://localhost:38181/Manager/Dashboard">Dashboard</a>
+                                <a class="" asp-action="Index" asp-area="Manager" asp-controller="Dashboard">Dashboard</a>
+                            </li>
+                            <li class="dashboard-item">
+                                <i class="fa fa-newspaper-o text-white"></i>
+                                <a class="" asp-action="Index" asp-area="Manager" asp-controller="Magazine">Magazine</a>
                             </li>
                             <li class="dashboard-item">
                                 <i class="fa-solid fa-list text-white"></i>
@@ -79,7 +85,7 @@
                 </div>
             </header>
 
-            <div class=" dashboard-color">
+            <div class=" dashboard-color bg-white">
                 @RenderBody()
             </div>
         </div>
@@ -90,7 +96,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
             var currentUrl = window.location.href;
@@ -104,6 +109,8 @@
             });
         });
     </script>
+
+    <script src="//cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
 
     @await Component.InvokeAsync("Notyf")
     @RenderSection("Scripts", required: false)
