@@ -45,6 +45,7 @@ namespace WebEnterprise.Controllers
             ViewBag.StoredQuery = query;
             _httpContextAccessor.HttpContext.Session.SetInt32("MegazineId", id);
             List<GetContributionModel> contributions = await _unitOfWork.ContributionRepository.SearchContribution(id, query);
+            contributions = contributions.Where(c => c.Status == "Accept").ToList();
             int pageSize = 5;
             int pageNumber = (page ?? 1);
 

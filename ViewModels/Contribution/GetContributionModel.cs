@@ -10,5 +10,6 @@
         public DateTime CreatedDate { get; set; }
         public string Megazine { get; set; }
         public string FilePath { get; set; }
+        public String Status { get; set; } = "Accept";
     }
 }
