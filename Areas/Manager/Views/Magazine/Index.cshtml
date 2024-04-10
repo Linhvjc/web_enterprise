@@ -1,0 +1,49 @@
+﻿@model List<WebEnterprise.Models.Entities.Megazine>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "../../Views/Shared/_Layout.cshtml";
+}
+<div class="padding-left-content">
+    <div class="px-5 text-black">
+        <div class="card shadow border-0 my-4">
+            <div class="card-header ml-0 py-3" style="background-color: #64748b">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 class="text-white py-2">Magazine List</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <div class="row pb-3">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6 text-end">
+                        <a asp-area="Manager" asp-controller="Magazine" asp-action="Create" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i>Create New Semester
+                        </a>
+                    </div>
+                </div>
+
+                <table id="tblData" class="" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Name</th> 
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Faculty</th>
+                            <th>Semester</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/magazine.js"></script>
+}
