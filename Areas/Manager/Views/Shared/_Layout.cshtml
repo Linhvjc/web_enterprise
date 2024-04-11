@@ -12,6 +12,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,6 +24,7 @@
     <link rel="stylesheet" href="~/css/managerSite.css" asp-append-version="true" />
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css" />
 </head>
+
 <body>
     <style>
         a {
@@ -38,12 +40,13 @@
             <div class="header">
                 <div class="sidebar_menu">
                     <div class="menu-group">
-                        
+
                         <h3 class="header">Manager Dashboard</h3>
                         <ul id="menuItems" class="menu-items" style="padding-left: 0px">
                             <li class="dashboard-item">
                                 <i class="fa-solid fa-house text-white"></i>
-                                <a class="" asp-action="Index" asp-area="Manager" asp-controller="Dashboard">Dashboard</a>
+                                <a class="" asp-action="Index" asp-area="Manager"
+                                    asp-controller="Dashboard">Dashboard</a>
                             </li>
                             <li class="dashboard-item">
                                 <i class="fa fa-newspaper-o text-white"></i>
@@ -59,39 +62,76 @@
                         <ul class="" style="padding-left: 0px">
                             <li class="dashboard-item">
                                 <i class="fa-solid fa-right-from-bracket text-white"></i>
-                                <a class="" href="#">Logout</a>
+                                <a class="" asp-action="Logout" asp-controller="Authentication" asp-area="">Logout</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="position-relative d-flex flex-grow-1 flex-col overflow-auto full-width">
-            <header>
-                <div class="container bg-header bg-white">
+        <header style="position: sticky; top: 0; z-index: 1000;" id="main-header">
+            <div class="position-relative d-flex flex-grow-1 flex-col overflow-auto full-width">
+                <div class="container">
                     <nav class="" style="padding: 10px 10px">
                         <div class="d-flex align-items-center justify-content-between header-card">
-                            <a class="navbar-brand padding-left-icon" href="#">
-                                <i class="fa-solid fa-bars"></i>
-                            </a>
+
+                            @* <a class="navbar-brand padding-left-icon" href="#">
+                            <i class="fa-solid fa-bars"></i>
+                            </a> *@
+                            <li class="nav-item link remove-dot" style="margin-left: -5%;">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                    asp-action="Index">Home</a>
+                            </li>
                             <div class="d-flex align-items-center justify-content-end">
                                 <a class="navbar-brand" href="#">
-                                    <img src="~/images/face/admin.png" alt="Avatar Logo" style="width:60px; border-radius: 50%">
+                                    <img src="~/images/face/admin.png" alt="Avatar Logo"
+                                        style="width:60px; border-radius: 50%">
                                 </a>
                                 <h5>Welcome Manager</h5>
                             </div>
                         </div>
                     </nav>
                 </div>
-            </header>
-
-            <div class=" dashboard-color bg-white">
-                @RenderBody()
-            </div>
+        </header>
+        <div class=" dashboard-color bg-white">
+            @RenderBody()
         </div>
     </div>
+    </div>
 
-
+    <section class="footer" style="height: auto;">
+        <!-- Footer -->
+        <footer class="text-center text-white" style="background-color: #0a4275;">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: CTA -->
+                <section class="">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <p class="d-flex align-items-center">
+                            <span class="footer-me">Well come to</span>
+                        </p>
+                        <form style="padding-bottom: 15px;" asp-area="" asp-controller="Authentication"
+                            asp-action="Login">
+                            <button data-mdb-ripple-init type="submit" class="btn btn-outline-light btn-rounded">
+                                Sign in
+                            </button>
+                        </form>
+                        <form style="padding-bottom: 15px;" asp-area="" asp-controller="Home" asp-action="Index">
+                            <button data-mdb-ripple-init type="submit" class="btn btn-outline-light btn-rounded">
+                                Home
+                            </button>
+                        </form>
+                        <p class="d-flex align-items-center">
+                            <span class="footer-me">© 2024 Copyright: Miracle</span>
+                        </p>
+                    </div>
+                </section>
+                <!-- Section: CTA -->
+            </div>
+            <!-- Grid container -->
+        </footer>
+        <!-- Footer -->
+    </section>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -115,4 +155,5 @@
     @await Component.InvokeAsync("Notyf")
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>

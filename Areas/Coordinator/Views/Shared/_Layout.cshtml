@@ -12,6 +12,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,6 +22,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/managerSite.css" asp-append-version="true" />
 </head>
+
 <body>
     <style>
         a {
@@ -31,26 +33,30 @@
             background-color: #cc6699;
         }
     </style>
-        <div class="position-relative d-flex flex-grow-1 flex-col overflow-auto full-width">
-            <header>
-                <div class="container bg-header bg-white">
-                    <nav class="" style="padding: 10px 10px">
-                        <div class="d-flex align-items-center justify-content-between header-card">
-                            <div class="d-flex align-items-center justify-content-start">
-                                <a class="navbar-brand" href="#">
-                                    <img src="~/images/face/admin.png" alt="Avatar Logo" style="width:60px; border-radius: 50%">
-                                </a>
-                                <h5>Welcome Coordinator</h5>
-                            </div>
-                        </div>
-                    </nav>
+    <header style="position: sticky; top: 0; z-index: 1000;" id="main-header">
+        <div class="container">
+            <nav class="" style="padding: 10px 10px">
+                <div class="d-flex align-items-center justify-content-between header-card">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/images/logo-2x.png" alt="Avatar Logo" style="width:100px;">
+                    </a>
+                    <li class="nav-item link remove-dot">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <div class="d-flex align-items-center justify-content-start">
+                        <a class="navbar-brand" href="#">
+                            <img src="~/images/face/admin.png" alt="Avatar Logo" style="width:60px; border-radius: 50%">
+                        </a>
+                        <h5>Welcome Coordinator</h5>
+                    </div>
                 </div>
-            </header>
-
-            <div class=" dashboard-color">
-                @RenderBody()
-            </div>
+            </nav>
         </div>
+    </header>
+
+    <div class=" dashboard-color">
+        @RenderBody()
+    </div>
     </div>
 
 
@@ -76,11 +82,38 @@
     @await Component.InvokeAsync("Notyf")
     @RenderSection("Scripts", required: false)
 </body>
-<footer class="footer mt-auto py-3 bg-light">
-    <div class="container text-center">
-        <span class="text-muted">Coordinator page</span>
-    </div>
-</footer>
+<section class="footer">
+    <!-- Footer -->
+    <footer class="text-center text-white" style="background-color: #0a4275;">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: CTA -->
+            <section class="">
+                <div class="d-flex justify-content-center align-items-center">
+                    <p class="d-flex align-items-center">
+                        <span class="footer-me">Well come to</span>
+                    </p>
+                    <form style="padding-bottom: 15px;" asp-area="" asp-controller="Authentication" asp-action="Login">
+                        <button data-mdb-ripple-init type="submit" class="btn btn-outline-light btn-rounded">
+                            Sign in
+                        </button>
+                    </form>
+                    <form style="padding-bottom: 15px;" asp-area="" asp-controller="Home" asp-action="Index">
+                        <button data-mdb-ripple-init type="submit" class="btn btn-outline-light btn-rounded">
+                            Home
+                        </button>
+                    </form>
+                    <p class="d-flex align-items-center">
+                        <span class="footer-me">© 2024 Copyright: Miracle</span>
+                    </p>
+                </div>
+            </section>
+            <!-- Section: CTA -->
+        </div>
+        <!-- Grid container -->
+    </footer>
+    <!-- Footer -->
+</section>
 
 
 <section class="container mt-5">
@@ -88,20 +121,25 @@
         <div class="col-md-6">
             <h2>Coordinator Guidance</h2>
             <p>
-                Welcome to the Coordinator Guidance section. As a coordinator, you play a vital role in managing and overseeing various aspects of our academic programs.
+                Welcome to the Coordinator Guidance section. As a coordinator, you play a vital role in managing and
+                overseeing various aspects of our academic programs.
             </p>
             <p>
-                This page is designed to provide you with essential information, resources, and tools to effectively carry out your responsibilities. You'll find documents, policies, and guidelines related to your role as a coordinator.
+                This page is designed to provide you with essential information, resources, and tools to effectively
+                carry out your responsibilities. You'll find documents, policies, and guidelines related to your role as
+                a coordinator.
             </p>
             <p>
-                Please utilize the navigation bar above to access different sections, including document repositories, announcement boards, and support resources tailored specifically for coordinators.
+                Please utilize the navigation bar above to access different sections, including document repositories,
+                announcement boards, and support resources tailored specifically for coordinators.
             </p>
             <p>
                 We're here to support you in your role as a coordinator.
             </p>
         </div>
         <div class="col-md-6">
-            <img src="https://reelcanada.ca/wp-content/uploads/2022/11/career-ProductionCoordinator.svg" alt="Image" class="img-fluid" width="320" height="300">
+            <img src="https://reelcanada.ca/wp-content/uploads/2022/11/career-ProductionCoordinator.svg" alt="Image"
+                class="img-fluid" width="320" height="300">
         </div>
 
     </div>
