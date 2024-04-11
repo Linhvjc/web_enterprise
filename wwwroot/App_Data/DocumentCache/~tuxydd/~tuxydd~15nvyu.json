@@ -1,0 +1,31 @@
+{
+  "CacheSourceKey": "tuxydd",
+  "CachePdfKey": "tuxydd/tuxydd-ajizqv.pdf",
+  "CacheXpzKey": "tuxydd/tuxydd-15nvyu.xpz",
+  "CacheInfoKey": "tuxydd/tuxydd-15nvyu.json",
+  "CacheCopyKey": null,
+  "Document": "Type=Url;File=\"https://firebasestorage.googleapis.com/v0/b/webenterprise-8a158.appspot.com/o/assets%2Fd452386e-3d03-4d21-81d9-dbf1318b5f60.docx?alt=media&token=88959b4e-6cad-4a2b-be4b-3d767c14c449\"",
+  "DocumentFileName": "d452386e-3d03-4d21-81d9-dbf1318b5f60.docx",
+  "DownloadFileName": null,
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": "d452386e-3d03-4d21-81d9-dbf1318b5f60.docx",
+    "UpdateFields": true,
+    "Encoding": null,
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Attachments": [],
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "tuxydd",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  },
+  "Attachments": []
+}

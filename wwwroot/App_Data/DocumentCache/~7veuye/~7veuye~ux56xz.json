@@ -1,0 +1,31 @@
+{
+  "CacheSourceKey": "7veuye",
+  "CachePdfKey": "7veuye/7veuye-1ciu2wr.pdf",
+  "CacheXpzKey": "7veuye/7veuye-ux56xz.xpz",
+  "CacheInfoKey": "7veuye/7veuye-ux56xz.json",
+  "CacheCopyKey": null,
+  "Document": "Type=Url;File=\"https://firebasestorage.googleapis.com/v0/b/webenterprise-8a158.appspot.com/o/assets%2Fcdc6124b-de5e-4d8e-af64-5f55e0f3d030.docx?alt=media&token=21adb84e-512c-4940-a102-1d51cb0d7488\"",
+  "DocumentFileName": "cdc6124b-de5e-4d8e-af64-5f55e0f3d030.docx",
+  "DownloadFileName": null,
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": "cdc6124b-de5e-4d8e-af64-5f55e0f3d030.docx",
+    "UpdateFields": true,
+    "Encoding": null,
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Attachments": [],
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "7veuye",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  },
+  "Attachments": []
+}
