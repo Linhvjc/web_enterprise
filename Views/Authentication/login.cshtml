@@ -1,11 +1,20 @@
-﻿
-@model WebEnterprise.ViewModels.LoginModel
+﻿@model WebEnterprise.ViewModels.LoginModel
 
 @{
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_AuthenticationLayout.cshtml";
 }
 @*@Html.ValidationSummary()*@
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVCApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
 <section class="vh-100" style="background-color: #9A616D; height: 100vh;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -14,7 +23,8 @@
                     <div class="row g-0">
                         <div class="col-md-6 col-lg-5 d-none d-md-block">
                             <img src="https://mobimg.b-cdn.net/v3/fetch/98/989b4d4a9d8a93124d304a730e3b5739.jpeg?h=900&r=0.5"
-                                 alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%;" />
+                                alt="login form" class="img-fluid"
+                                style="border-radius: 1rem 0 0 1rem; height: 100%;" />
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
@@ -33,7 +43,8 @@
 
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                        <span style="width: 100%;text-align: center;" class="h1 fw-bold mb-0">Login</span>
+                                        <span style="width: 100%;text-align: center;"
+                                            class="h1 fw-bold mb-0">Login</span>
                                     </div>
 
                                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
@@ -41,15 +52,18 @@
                                     </h5>
 
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="form2Example17" class="form-control form-control-lg" asp-for="Email" />
-                                        <label class="form-label" for="form2Example17" asp-for="Email">Email address</label>
+                                        <input type="email" id="form2Example17" class="form-control form-control-lg"
+                                            asp-for="Email" />
+                                        <label class="form-label" for="form2Example17" asp-for="Email">Email
+                                            address</label>
                                         <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="form2Example27"
-                                               class="form-control form-control-lg" asp-for="Password" />
-                                        <label class="form-label" for="form2Example27" asp-for="Password">Password</label>
+                                        <input type="password" id="form2Example27" class="form-control form-control-lg"
+                                            asp-for="Password" />
+                                        <label class="form-label" for="form2Example27"
+                                            asp-for="Password">Password</label>
                                         <span asp-validation-for="Password" class="text-danger"></span>
                                     </div>
 
@@ -70,4 +84,37 @@
             </div>
         </div>
     </div>
+</section>
+
+<section class="footer">
+    <!-- Footer -->
+    <footer class="text-center text-white" style="background-color: #0a4275;">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: CTA -->
+            <section class="">
+                <div class="d-flex justify-content-center align-items-center">
+                    <p class="d-flex align-items-center">
+                        <span class="footer-me">Well come to</span>
+                    </p>
+                    <form style="padding-bottom: 15px;" asp-area="" asp-controller="Authentication" asp-action="Login">
+                        <button data-mdb-ripple-init type="submit" class="btn btn-outline-light btn-rounded">
+                            Sign in
+                        </button>
+                    </form>
+                    <form style="padding-bottom: 15px;" asp-area="" asp-controller="Home" asp-action="Index">
+                        <button data-mdb-ripple-init type="submit" class="btn btn-outline-light btn-rounded">
+                            Home
+                        </button>
+                    </form>
+                    <p class="d-flex align-items-center">
+                        <span class="footer-me">© 2024 Copyright: Miracle</span>
+                    </p>
+                </div>
+            </section>
+            <!-- Section: CTA -->
+        </div>
+        <!-- Grid container -->
+    </footer>
+    <!-- Footer -->
 </section>
