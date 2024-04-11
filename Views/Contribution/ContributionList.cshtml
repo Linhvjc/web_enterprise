@@ -1,4 +1,4 @@
-﻿﻿@using X.PagedList.Mvc.Core;
+﻿﻿﻿﻿@using X.PagedList.Mvc.Core;
 @using X.PagedList;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-sm-7">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
+<ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -37,8 +37,7 @@
                             <a asp-controller="Home" asp-action="Index">Contribution</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <a asp-controller="Contribution" asp-action="ContributionList"
-                                asp-id="@ViewBag.Id">Model[0].Megazine</a>
+                          <a asp-controller="Contribution" asp-action="ContributionList" asp-id="@ViewBag.Id">Model[0].Megazine</a>
                         </li>
                     </ol>
                 </nav>
