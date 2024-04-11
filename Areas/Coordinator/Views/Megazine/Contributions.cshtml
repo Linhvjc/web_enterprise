@@ -1,0 +1,92 @@
+﻿@model IEnumerable<WebEnterprise.Models.Entities.Contribution>
+@{
+    ViewData["Title"] = "Contribution";
+    Layout = "../../Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/coordinatorMagazine.css" rel="stylesheet">
+<div class="container mt-4">
+    <h1>Contributions list:</h1>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tbody>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+                <script>
+                    function toggleStatus(contributionId) {
+                        $.post('/Coordinator/Megazine/ToggleContributionStatus', { id: contributionId }, function (data) {
+                            location.reload(); // Tải lại trang sau khi thay đổi trạng thái thành công
+                        });
+                    }
+                </script>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="container-overlap bg-blue-500 ng-scope">    
+                                <div class="media m0 pv">
+                                    <div class="media-left"><a href="#"><img src=" @Html.DisplayFor(modelItem => item.User.ProfilePicture)" alt="User" class="media-object img-circle thumb64"></a></div>
+                                    <div class="media-body media-middle">
+                                        <h2 class="media-heading text-white">
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </h2>
+                                        <h4 class="media-heading text-white">
+                                            @Html.DisplayFor(modelItem => item.Megazine.Name)
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-fluid ng-scope">
+                                <div class="">
+                                    <form class="card ng-pristine ng-valid">
+                                        <h5 class="card-heading pb0">
+                                            More InformationAbout
+                                        </h5>
+                                        <div class="card-body">
+                                            <table class="table table-striped">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><em class="ion-document-text icon-fw mr"></em>Student's name contributed</td>
+                                                        <td class="ng-binding">
+                                                            @Html.DisplayFor(modelItem => item.User.FullName)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><em class="ion-document-text icon-fw mr"></em>Created By</td>
+                                                        <td class="ng-binding">
+                                                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><em class="ion-egg icon-fw mr"></em>Created Date</td>
+                                                        <td>
+                                                            <span class="ng-scope ng-binding editable">
+                                                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="card-divider"></div>
+                                        <div class="card-offset">
+                                            <div class="card-offset-item text-right">
+                                                <button type="button" class="btn-raised btn btn-warning btn-circle btn-lg">
+                                                    <a asp-area="Coordinator" asp-controller="Megazine" asp-action="ContributionDetail" asp-route-id="@item.Id"><em class="fa fa-edit"></em></a>
+                                                </button>
+                                                <button onclick="toggleStatus(@item.Id)" class="btn @(item.Status == "Accept" ? "btn-success" : "btn-warning")">
+                                                    @item.Status
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+

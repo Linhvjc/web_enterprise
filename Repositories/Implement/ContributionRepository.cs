@@ -109,14 +109,15 @@ namespace WebEnterprise.Repositories.Implement
 
         public async Task<List<GetContributionModel>> SearchContribution(int megazineId, string? query)
         {
-            IQueryable<Contribution> conQuery = _dbContext.Contributions;
+            IQueryable<Contribution> conQuery = _dbContext.Contributions
+                .Where(con => con.MegazineId == megazineId && con.Status == "Accept"); // Thêm điều kiện lọc theo Status
 
             if (!string.IsNullOrEmpty(query))
             {
                 conQuery = conQuery.Where(c => c.Title.Contains(query));
             }
 
-            var contributions = await conQuery.Where(con => con.MegazineId == megazineId)
+            var contributions = await conQuery
                 .Select(c => new GetContributionModel
                 {
                     Id = c.Id,
@@ -124,9 +125,10 @@ namespace WebEnterprise.Repositories.Implement
                     CreatedDate = c.CreatedDate,
                     FullName = c.User.FullName,
                     ProfilePicture = c.User.ProfilePicture,
-                    ReplyCount = c.Comments.Count(),
+                    ReplyCount = c.Comments.Count,
                     Megazine = c.Megazine.Name,
                     FilePath = c.FilePath,
+                    Status = c.Status
                 })
                 .ToListAsync();
 

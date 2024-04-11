@@ -1,0 +1,299 @@
+﻿@model List<WebEnterprise.ViewModels.Faculty.StatisticsFaculty>;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "../../Views/Shared/_Layout.cshtml";
+    var index = 1;
+    var index2 = 1;
+    var index3 = 1;
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var Computing = [];
+        var Business = [];
+        var Designing = [];
+        var Engineering = [];
+        var Semester = [];
+
+
+
+    @if (ViewBag.BarChart.Count > 0)
+    {
+        foreach (var item in ViewBag.BarChart)
+        {
+            @:Computing.push(@item.Computing);
+            @:Business.push(@item.Business);
+            @:Designing.push(@item.Designing);
+            @:Engineering.push(@item.Engineering);
+            @:Semester.push("@item.Name");
+
+        }
+    }
+
+                    var ComputingDataset = {
+            label: 'Computing',
+            data: Computing,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderWidth: 0,
+            lineTension: 0,
+        };
+
+        var BusinessDataset = {
+            label: 'Business',
+            data: Business,
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderWidth: 0,
+        };
+
+        var DesigningDataset = {
+            label: 'Designing',
+            data: Designing,
+            backgroundColor: 'rgb(157, 230, 41)',
+            borderWidth: 0,
+        };
+
+        var EngineeringDataset = {
+            label: 'Engineering',
+            data: Engineering,
+            backgroundColor: 'rgb(41, 224, 230)',
+            borderWidth: 0,
+        };
+
+        var datasetvalues = {
+            labels: Semester,
+            datasets: [ComputingDataset, BusinessDataset, DesigningDataset, EngineeringDataset]
+        };
+
+        var chartOptions = {
+            scales: {
+                xAxes: [{
+                    barPercentage: 1,
+                    categoryPercentage: 0.6,
+                }],
+                yAxes: [{
+                    barPercentage: 1,
+                    categoryPercentage: 0.6,
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+            }
+        };
+
+        var barChart = new Chart($("#barchart"), {
+            type: 'bar',
+            data: datasetvalues,
+            options: chartOptions
+        });
+
+
+        function createDoughnutChart(canvasId, labels, data) {
+            var ctx = document.getElementById(canvasId);
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        borderWidth: 0,
+                        backgroundColor: [
+                            'rgb(124, 94, 232)',
+                            'rgb(246, 190, 2)',
+                            'rgb(74, 182, 247)',
+                            'rgb(40, 198, 146)'
+                        ],
+                        hoverBackgroundColor: [
+                            'rgb(124, 94, 232)',
+                            'rgb(246, 190, 2)',
+                            'rgb(74, 182, 247)',
+                            'rgb(40, 198, 146)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: "bottom",
+                        labels: {
+                            boxWidth: 11,
+                            fontColor: "#757681",
+                            fontSize: 11
+                        }
+                    }
+                }
+            });
+        }
+
+        var semester1 = [];
+        var data1 = [];
+        var semester2 = [];
+        var data2 = [];
+        var semester3 = [];
+        var data3 = [];
+
+    @if (ViewBag.PieChart.Count > 0)
+    {
+        foreach (var item in ViewBag.PieChart)
+        {
+            @:semester1.push('@item.Name');
+            @:data1.push(@item.Number);
+        }
+    }
+    @if (ViewBag.PieChart2.Count > 0)
+    {
+        foreach (var item in ViewBag.PieChart2)
+        {
+            @:semester2.push('@item.Name');
+            @:data2.push(@item.Number);
+        }
+    }
+    @if (ViewBag.PieChart3.Count > 0)
+    {
+        foreach (var item in ViewBag.PieChart3)
+        {
+            @:semester3.push('@item.Name');
+            @:data3.push(@item.Number);
+        }
+    }
+
+            createDoughnutChart("doughnutChart1", semester1, data1);
+        createDoughnutChart("doughnutChart2", semester2, data2);
+        createDoughnutChart("doughnutChart3", semester3, data3);
+    });
+
+</script>
+
+<div class="">
+    <div class="ps-5 text-black">
+        <div class="text-center">
+            <h4 class="display-4">Faculty Contribution Details By Bar Chart</h4>
+            <div class="card">
+                <div class="card-header">
+                    <div class="chart">
+                        <canvas id="barchart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <h4 class="display-4">Percentage Of Contribution Details By Pie Chart</h4>
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <div class="card card-width">
+                        <h4>Fall 2023</h4>
+                        <div class="card-header">
+                            <div class="chart">
+                                <canvas id="doughnutChart1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-width">
+                        <h4>Winter 2023</h4>
+                        <div class="card-header">
+                            <div class="chart">
+                                <canvas id="doughnutChart2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-width">
+                        <h4>Spring 2024</h4>
+                        <div class="card-header">
+                            <div class="chart">
+                                <canvas id="doughnutChart3"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 padding-width">
+                <h4 class="display-5">Table of Contributons</h4>
+                <div class="con-table">
+                    <div class="con-header">
+                        <div class="grid-template">
+                            <div class="col-span-1">STT</div>
+                            <div class="col-span-2">Semester</div>
+                            <div class="col-span-2">Faculty</div>
+                            <div class="col-span-2">Contributions</div>
+                            <div class="col-span-2">Contributors</div>
+                        </div>
+                    </div>
+                    @foreach (var item in Model)
+                    {
+                        <div class="con-body @((index % 2 == 0) ? "even-row" : "odd-row")">
+                            <div class="grid-template">
+                                <div class="col-span-1">@index</div>
+                                <div class="col-span-2">@item.SemesterName</div>
+                                <div class="col-span-2">@item.FacultyName</div>
+                                <div class="col-span-2">@item.ContributionCount</div>
+                                <div class="col-span-2">@item.ContributorCount</div>
+
+                            </div>
+                        </div>
+                        index++;
+                    }
+                </div>
+            </div>
+
+            <div class="mt-5 padding-width">
+                <h4 class="display-5">Contributions Without Comments</h4>
+                <div class="con-table">
+                    <div class="con-header">
+                        <div class="grid-template">
+                            <div class="col-span-1">STT</div>
+                            <div class="col-span-2">Title</div>
+                            <div class="col-span-2">Megazine Name</div>
+                            <div class="col-span-2">Faculty</div>
+                            <div class="col-span-2">Created Date</div>
+                        </div>
+                    </div>
+                    @foreach (var item in ViewBag.ExCon)
+                    {
+                        <div class="con-body @((index2 % 2 == 0) ? "even-row" : "odd-row")">
+                            <div class="grid-template">
+                                <div class="col-span-1">@index2</div>
+                                <div class="col-span-2">@item.Title</div>
+                                <div class="col-span-2">@item.MegazineName</div>
+                                <div class="col-span-2">@item.FacultyName</div>
+                                <div class="col-span-2">@item.CreatedDate</div>
+
+                            </div>
+                        </div>
+                        index2++;
+                    }
+                </div>
+            </div>
+            <div class="mt-5 padding-width">
+                <h4 class="display-5">Contributions Without Comments After 14 Days</h4>
+                <div class="con-table">
+                    <div class="con-header">
+                        <div class="grid-template">
+                            <div class="col-span-1">STT</div>
+                            <div class="col-span-2">Title</div>
+                            <div class="col-span-2">Megazine Name</div>
+                            <div class="col-span-2">Faculty</div>
+                            <div class="col-span-2">Created Date</div>
+                        </div>
+                    </div>
+                    @foreach (var item in ViewBag.ExCon14)
+                    {
+                        <div class="con-body @((index3 % 2 == 0) ? "even-row" : "odd-row")">
+                            <div class="grid-template">
+                                <div class="col-span-1">@index3</div>
+                                <div class="col-span-2">@item.Title</div>
+                                <div class="col-span-2">@item.MegazineName</div>
+                                <div class="col-span-2">@item.FacultyName</div>
+                                <div class="col-span-2">@item.CreatedDate</div>
+
+                            </div>
+                        </div>
+                        index3++;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

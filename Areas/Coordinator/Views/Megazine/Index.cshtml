@@ -1,0 +1,103 @@
+﻿@model IEnumerable<WebEnterprise.Models.Entities.Megazine>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "../../Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Style cho hiệu ứng hover */
+    .table tbody tr:hover {
+        background-color: #cc99cc;
+    }
+
+    /* Thay đổi con trỏ chuột thành hình ngón tay */
+    .table tbody tr:hover {
+        cursor: pointer;
+    }
+</style>
+
+<div class="container mt-4">
+    <h1>Coordinator</h1>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr onclick="window.location.href='@Url.Action("Contributions", "Megazine", new { id = item.Id })'">
+                        <td>
+                                <img src="~/images/magazine.png" class="img-fluid rounded" style="width:40%;" alt="">
+                        </td>
+                        <td>
+                            <div>
+                                <h5 class="font-size-18"><a class="text-dark"> @item.Name</a></h5>
+                                <p class="text-muted mb-0 mt-2 pt-2">@item.Faculty.Name </p>
+                            </div>
+                        </td>
+                        <td>
+                            <ul class="list-unstyled ps-0 mb-0">
+                                <li>
+                                    <p class="text-muted mb-1 text-truncate">
+                                        Start date:                                        
+                                    </p>    
+                                    <i class="  text-primary me-1">
+                                        @Html.DisplayFor(modelItem => item.StartDate)
+                                    </i>
+                                </li>
+                                <li>
+                                    <p class="text-muted mb-1 text-truncate">
+                                        End date:                                        
+                                    </p>
+                                    <i class="  text-primary me-1">
+                                        @Html.DisplayFor(modelItem => item.EndDate)
+                                    </i>
+                                </li>
+                            </ul>   
+                        </td>
+                        <td>
+                            <ul class="list-unstyled ps-0 mb-0">
+                                <li>
+                                    <p class="text-muted mb-1 text-truncate">
+                                        Created by:                                                                              
+                                    </p>
+                                    <i class="  text-primary me-1">
+                                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                                    </i>
+                                </li>
+                                <li>
+                                    <p class="text-muted mb-1 text-truncate">
+                                        Last modified by:                                        
+                                    </p>
+                                    <i class="  text-primary me-1">
+                                        @Html.DisplayFor(modelItem => item.LastModifiedBy)
+                                    </i>                                       
+                                </li>
+                            </ul>
+                        </td>
+
+                        <td>
+                            <ul class="list-unstyled ps-0 mb-0">
+                                <li>
+                                    <p class="text-muted mb-1 text-truncate">
+                                        Created date:                                        
+                                    </p>
+                                    <i class="  text-primary me-1">
+                                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                                    </i>
+                                </li>
+                                <li>
+                                    <p class="text-muted mb-1 text-truncate">
+                                        Last modified date:                                        
+                                    </p>
+                                    <i class="  text-primary me-1">
+                                        @Html.DisplayFor(modelItem => item.LastModifiedDate)
+                                    </i>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

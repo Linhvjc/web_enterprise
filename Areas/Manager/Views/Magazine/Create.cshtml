@@ -1,0 +1,61 @@
+﻿@model WebEnterprise.ViewModels.Megazine.CreateMegazineModel
+
+@{
+    ViewData["Title"] = "Create Megazine";
+    Layout = "../../Views/Shared/_Layout.cshtml";
+}
+
+<div class="padding-left-content bg-white">
+    <div class="px-5 text-black">
+        <div class="col-9 grid-margin stretch-card">
+            <div class="card shadow border-0 my-4">
+            <div class="card-body">
+                <h4 class="card-title text-center">Add a new Magazine</h4>
+                <p class="card-description">Input the information below </p>
+                <form class="forms-sample" method="post">
+                    <div class="form-group">
+                        <label asp-for="Name">Name Magazine</label>
+                        <input type="text" class="form-control" asp-for="Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FacultyId">Faculty</label>
+                        <select asp-for="FacultyId" name="FacultyId" asp-items="(SelectList)ViewBag.Faculties" class="form-control">
+                            <option value="">-- Select Faculty --</option>
+
+                        </select>
+                        <span asp-validation-for="FacultyId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SemesterId">Semester</label>
+                        <select asp-for="SemesterId" name="SemesterId" asp-items="(SelectList)ViewBag.Semesters" class="form-control">
+                            <option value="">-- Select Semester --</option>
+
+                        </select>
+                        <span asp-validation-for="SemesterId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <label asp-for="StartDate" class="control-label"></label>
+                        <input asp-for="StartDate" class="form-control" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EndDate" class="control-label">End Date</label>
+                        <input class="form-control" asp-for="EndDate">
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
