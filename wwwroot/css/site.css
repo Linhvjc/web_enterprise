@@ -1651,3 +1651,7 @@ form .row:last-child {
 /* ======================================== */
 /* =============CONTACT SECTION============ */
 /* ======================================== */
+
+.nav-item.link.remove-dot{
+    list-style-type: none;
+}
