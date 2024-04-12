@@ -77,11 +77,6 @@
                                     Login
                                 </button>
                             </form>
-                            <form asp-area="Admin" asp-controller="Account" asp-action="CreateAccount">
-                                <button data-mdb-ripple-init type="submit" class="btn btn-custom btn-rounded">
-                                    Register
-                                </button>
-                            </form>
                         }
                         else
                         {
@@ -100,14 +95,6 @@
                                                     <i class="fa-solid fa-user change-icon"></i>
                                                 </div>
                                                 <span class="change-text">Your profile</span>
-                                            </div>
-                                        </a>
-                                        <a class="hover-item" asp-action="GetContributionStudent" asp-controller="Contribution">
-                                            <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
-                                                <div class="p-2 bg-gray change-item rounded-2">
-                                                    <i class="fa-solid fa-list change-icon"></i>
-                                                </div>
-                                                <span class="change-text">Your contribution</span>
                                             </div>
                                         </a>
                                         <a class="hover-item" asp-action="dashboard" asp-controller="manager">
@@ -144,14 +131,6 @@
                                                     <i class="fa-solid fa-user change-icon"></i>
                                                 </div>
                                                 <span class="change-text">Your profile</span>
-                                            </div>
-                                        </a>
-                                        <a class="hover-item" asp-action="GetContributionStudent" asp-controller="Contribution">
-                                            <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
-                                                <div class="p-2 bg-gray change-item rounded-2">
-                                                    <i class="fa-solid fa-list change-icon"></i>
-                                                </div>
-                                                <span class="change-text">Your contribution</span>
                                             </div>
                                         </a>
                                         <a class="hover-item" asp-area="Admin" asp-controller="Account" asp-action="">
@@ -191,14 +170,6 @@
                                                 <span class="change-text">Your profile</span>
                                             </div>
                                         </a>
-                                        <a class="hover-item" asp-action="GetContributionStudent" asp-controller="Contribution">
-                                            <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
-                                                <div class="p-2 bg-gray change-item rounded-2">
-                                                    <i class="fa-solid fa-list change-icon"></i>
-                                                </div>
-                                                <span class="change-text">Your contribution</span>
-                                            </div>
-                                        </a>
                                         <a class="hover-item" asp-area="Coordinator" asp-controller="Dashboard"
                                             asp-action="ContributionList">
                                             <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
@@ -215,6 +186,15 @@
                                                     <i class="fa-solid fa-list change-icon"></i>
                                                 </div>
                                                 <span class="change-text">Contribution Dashboard</span>
+                                            </div>
+                                        </a>
+                                        <a class="hover-item" asp-area="Coordinator" asp-controller="Megazine"
+                                            asp-action="Index">
+                                            <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
+                                                <div class="p-2 bg-gray change-item rounded-2">
+                                                    <i class="fa-solid fa-list change-icon"></i>
+                                                </div>
+                                                <span class="change-text">Megazine</span>
                                             </div>
                                         </a>
                                         <a class="hover-item" asp-action="Logout" asp-controller="Authentication">
