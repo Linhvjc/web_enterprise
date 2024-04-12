@@ -46,7 +46,7 @@
                         <input type="text" class="form-control" placeholder="Search">
                         <button class="btn btn-primary" type="button">Search</button>
                     </div>
-                    @if (!User.IsInRole("Admin"))
+                    @if (!User.IsInRole("Admin") && !User.IsInRole("Coordinator") && !User.IsInRole("Manager"))
                     {
                         <ul class="navbar-nav flex-row">
                             <li class="nav-item link">
@@ -267,7 +267,7 @@
     <!-- ======================================================= -->
     <!-- =========================CONTACT======================= -->
     <!-- ======================================================= -->
-    @if (!User.IsInRole("Admin"))
+    @if (!User.IsInRole("Admin") && !User.IsInRole("Coordinator") && !User.IsInRole("Manager"))
     {
         <section class="contact-section" id="contact">
             <div class="row">
