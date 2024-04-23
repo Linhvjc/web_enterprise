@@ -10,25 +10,25 @@ function loadDataTable() {
             url: '/manager/magazine/getall'
         },
         "columns": [
-            { data: 'name', "width": "15%", className: "text-center" },
+            { data: 'name', "width": "15%" },
             {
-                data: 'startDate', "width": "10%", className: "text-center"
-                render: function (data) {
+                data: 'startDate', "width": "10%",
+                "render": function (data) {
                     var date = new Date(data);
                     var datestring = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
                     return datestring;
                 }
             },
             {
-                data: 'endDate', "width": "10%", className: "text-center"
-                render: function (data) {
+                data: 'endDate', "width": "10%", className: "text-center",
+                "render": function (data) {
                     var date = new Date(data);
                     var datestring = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
                     return datestring;
                 }
             },
             { data: 'faculty.name', "width": "20%", className: "text-center" },
-            { data: 'semester.name', "width": "20%" className: "text-center" },
+            { data: 'semester.name', "width": "20%", className: "text-center" },
             {
                 data: 'id',
                 "render": function (data) {
