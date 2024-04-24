@@ -1,23 +1,30 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model WebEnterprise.Models.Entities.Faculty
+﻿﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model WebEnterprise.ViewModels.Faculty.CreateFacultyModel
 
 @{
     ViewData["Title"] = "Falcuty Dashboard";
     Layout = "../../Views/Shared/_Layout.cshtml";
 }
-
-<div class="col-9 grid-margin stretch-card" style="margin-left: 200px; margin-top: 100px;">
+<div class="card-header bg-secondary bg-gradient ml-0 py-3" style="margin-top: 20px;>
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2 class="text-white py-2">Create New Faculty</h2>
+        </div>
+    </div>
+</div>
+<div class="col-7 grid-margin stretch-card" style="margin: 100 auto;">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title text-center">Add a new falculty</h4>
-            <p class="card-description">Input the information below </p>
-            <form class="forms-sample" asp-area="Admin" asp-controller="Faculty" asp-action="Create" method="post">
-                <div class="form-group">
-                    <label asp-for="Name">Name Falculty</label>
+            <h3 class="card-title text-center">Falculty Information Filling Form</h3>
+            @* <p class="card-description">Input the information below </p> *@
+            <form class="forms-group" asp-area="Admin" asp-controller="Faculty" asp-action="Create" method="post">
+                <div class="form-group mt-3">
+                    <label asp-for="Name">Falculty Name</label>
                     <input type="text" class="form-control" asp-for="Name">
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-3">
                     <label asp-for="Description">Description</label>
                     <input type="text" class="form-control" asp-for="Description">
                     <span asp-validation-for="Description" class="text-danger"></span>
