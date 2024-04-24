@@ -40,17 +40,10 @@ namespace WebEnterprise.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Faculty faculty)
         {
-
-            if (ModelState.IsValid)
-            {
                 _notyfService.Success("You successfully create a new Faculty");
                 await _unitOfWork.FacultyRepository.Add(faculty);
                 return RedirectToAction("Index");
-            }
-            else
-            {
-                return View();
-            }
+           
         }
 
         // Edit

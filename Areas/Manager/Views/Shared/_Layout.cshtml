@@ -1,4 +1,4 @@
-﻿@using System.Text.Json
+﻿﻿@using System.Text.Json
 @using WebEnterprise.Models.Entities
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Http
@@ -38,20 +38,24 @@
             <div class="header">
                 <div class="sidebar_menu">
                     <div class="menu-group">
-                        
+
                         <h3 class="header">Manager Dashboard</h3>
                         <ul id="menuItems" class="menu-items" style="padding-left: 0px">
                             <li class="dashboard-item">
                                 <i class="fa-solid fa-house text-white"></i>
-                                <a class="" asp-action="Index" asp-area="Manager" asp-controller="Dashboard">Dashboard</a>
+                                <a class="" href="https://localhost:38181/Manager/Dashboard">Dashboard</a>
                             </li>
                             <li class="dashboard-item">
                                 <i class="fa fa-newspaper-o text-white"></i>
-                                <a class="" asp-action="Index" asp-area="Manager" asp-controller="Magazine">Magazine</a>
+                                <a class="" href="https://localhost:38181/Manager/Magazine">Magazine</a>
                             </li>
                             <li class="dashboard-item">
                                 <i class="fa-solid fa-list text-white"></i>
-                                <a class="" href="#">Contribution List</a>
+                                <a class="" href="https://localhost:38181/Manager/Dashboard/ContributionList">Contribution List</a>
+                            </li>
+                            <li class="dashboard-item">
+                                <i class="fa-solid fa-file-excel"></i>
+                                <a class="" href="https://localhost:38181/Manager/Dashboard/ViewExceptionReport">Exception Reports</a>
                             </li>
 
                         </ul>
@@ -59,7 +63,7 @@
                         <ul class="" style="padding-left: 0px">
                             <li class="dashboard-item">
                                 <i class="fa-solid fa-right-from-bracket text-white"></i>
-                                <a class="" href="#">Logout</a>
+                                <a class="hover-item" asp-area="" asp-action="Logout" asp-controller="Authentication">Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -67,7 +71,7 @@
             </div>
         </div>
         <div class="position-relative d-flex flex-grow-1 flex-col overflow-auto full-width">
-            <header>
+            <header class="bg-white">
                 <div class="container bg-header bg-white">
                     <nav class="" style="padding: 10px 10px">
                         <div class="d-flex align-items-center justify-content-between header-card">

@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "../../Views/Shared/_Layout.cshtml";
+    int index2 = 0;
+    int index3 = 0;
+}
+
+<div class="padding-left-content">
+    <div class="ps-5 text-black">
+        <div class="text-center">
+            <div class="mt-5 padding-width">
+                <h4 class="display-5">Contributions Without Comments</h4>
+                <div class="con-table">
+                    <div class="con-header">
+                        <div class="grid-template">
+                            <div class="col-span-1">STT</div>
+                            <div class="col-span-2">Title</div>
+                            <div class="col-span-2">Megazine Name</div>
+                            <div class="col-span-2">Faculty</div>
+                            <div class="col-span-2">Created Date</div>
+                        </div>
+                    </div>
+                    @foreach (var item in ViewBag.ExCon)
+                    {
+                        <div class="con-body @((index2 % 2 == 0) ? "even-row" : "odd-row")">
+                            <div class="grid-template">
+                                <div class="col-span-1">@index2</div>
+                                <div class="col-span-2">@item.Title</div>
+                                <div class="col-span-2">@item.MegazineName</div>
+                                <div class="col-span-2">@item.FacultyName</div>
+                                <div class="col-span-2">@item.CreatedDate</div>
+
+                            </div>
+                        </div>
+                        index2++;
+                    }
+                </div>
+            </div>
+            <div class="mt-5 padding-width">
+                <h4 class="display-5">Contributions Without Comments After 14 Days</h4>
+                <div class="con-table">
+                    <div class="con-header">
+                        <div class="grid-template">
+                            <div class="col-span-1">STT</div>
+                            <div class="col-span-2">Title</div>
+                            <div class="col-span-2">Megazine Name</div>
+                            <div class="col-span-2">Faculty</div>
+                            <div class="col-span-2">Created Date</div>
+                        </div>
+                    </div>
+                    @foreach (var item in ViewBag.ExCon14)
+                    {
+                        <div class="con-body @((index3 % 2 == 0) ? "even-row" : "odd-row")">
+                            <div class="grid-template">
+                                <div class="col-span-1">@index3</div>
+                                <div class="col-span-2">@item.Title</div>
+                                <div class="col-span-2">@item.MegazineName</div>
+                                <div class="col-span-2">@item.FacultyName</div>
+                                <div class="col-span-2">@item.CreatedDate</div>
+
+                            </div>
+                        </div>
+                        index3++;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

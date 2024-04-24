@@ -11,6 +11,7 @@
 ﻿﻿
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,66 +23,130 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css" />
 </head>
+
 <body>
-    <header>
+    <header style="position: sticky; top: 0; z-index: 1000;" id="main-header">
         <div class="container">
-            <nav class="navbar navbar-expand-sm" style="justify-content: space-between; padding: 30px 0">
+            <nav class="navbar navbar-expand-sm" style="justify-content: space-between; padding: 10px 0">
                 <div class="navbar-nav">
                     <a class="navbar-brand" href="#">
                         <img src="~/images/logo-2x.png" alt="Avatar Logo" style="width:100px;">
                     </a>
-                    <div class="search-input d-flex">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <button class="btn btn-primary" type="button">Search</button>
-                    </div>
+                    @* <div class="search-input d-flex">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <button class="btn btn-primary" type="button">Search</button>
+                    </div> *@
                 </div>
                 <ul class="navbar-nav flex-row mr-auto">
                     <li class="nav-item link">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                    @* <li class="nav-item link">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Privacy</a>
-                    </li>
-                    <li class="nav-item link">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Guide</a>
-                    </li> *@
 
-                    @if (User.IsInRole("Admin"))
+                    @* @if (User.IsInRole("Admin"))
                     {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Content Managment
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Faculty" asp-action="Index">Faculty</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Semester" asp-action="Index">Semester</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Account" asp-action="Create">Create User</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Account" asp-action="Index">Manage User</a>
-                                </li>
-                            </ul>
-                        </li>
-                    }
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Content Managment
+                    </a>
+                    <ul class="dropdown-menu">
+                    <li class="nav-item">
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Faculty"
+                    asp-action="Index">Faculty</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Semester"
+                    asp-action="Index">Semester</a>
+                    </li>
+                    <li>
+                    <hr class="dropdown-divider">
+                    </li>
+                    <li class="nav-item">
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Account"
+                    asp-action="Create">Create User</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Account"
+                    asp-action="Index">Manage User</a>
+                    </li>
+                    </ul>
+                    </li>
+
+
+                    } *@
                 </ul>
                 <ul class="navbar-nav flex-row mr-auto">
                     @if (!SignInManager.IsSignedIn(User))
                     {
                         <li class="nav-item link">
-                            <a class="fs-5 text-primary text-hover" asp-area="" asp-controller="Authentication" asp-action="Login">Login</a>
+                            <a class="fs-5 text-primary text-hover" asp-area="" asp-controller="Authentication"
+                                asp-action="Login">Login</a>
                         </li>
                     }
                     else
                     {
                         <li class="nav-item link">Hello @userName</li>
-                        <li class="nav-item link"><a class="fs-5 text-primary text-hover pe-2" asp-action="ViewProfile" asp-controller="Account">Profile </a></li>
-                        <li class="nav-item link"><a class="fs-5 text-primary text-hover" asp-action="Logout" asp-controller="Authentication">Logout </a></li>
+                        @* <li class="nav-item link"><a class="fs-5 text-primary text-hover pe-2" asp-action="ViewProfile"
+                    asp-controller="Account">Profile </a></li> *@
+                        <div class="dropdown-container">
+                            <div class="p-3 rounded-2 d-flex align-items-center gap-3 rotate-icon">
+                                <i class="fa-solid fa-circle-user"></i>
+                                <span>Content Managment</span>
+                                <i class="fa-solid fa-chevron-down my-icon"></i>
+                            </div>
+                            <div class="dropdown-list w-50 shadow-lg drop-list">
+                                <a class="hover-item" asp-area="Admin" asp-controller="Faculty" asp-action="Index">
+                                    <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
+                                        <div class="p-2 bg-gray change-item rounded-2">
+                                            <i class="fa-solid fa-list change-icon"></i>
+                                        </div>
+                                        <span class="change-text">Faculty</span>
+                                    </div>
+                                </a>
+                                <a class="hover-item" asp-area="Admin" asp-controller="Semester" asp-action="Index">
+                                    <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
+                                        <div class="p-2 bg-gray change-item rounded-2">
+                                            <i class="fa-solid fa-list change-icon"></i>
+                                        </div>
+                                        <span class="change-text">Semester</span>
+                                    </div>
+                                </a>
+                                <a class="hover-item" asp-area="Admin" asp-controller="Account" asp-action="Create">
+                                    <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
+                                        <div class="p-2 bg-gray change-item rounded-2">
+                                            <i class="fa-solid fa-user change-icon"></i>
+                                        </div>
+                                        <span class="change-text">Create User</span>
+                                    </div>
+                                </a>
+                                <a class="hover-item" asp-area="Admin" asp-controller="Account" asp-action="Index">
+                                    <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
+                                        <div class="p-2 bg-gray change-item rounded-2">
+                                            <i class="fa-solid fa-user change-icon"></i>
+                                        </div>
+                                        <span class="change-text">Manage User</span>
+                                    </div>
+                                </a>
+                                <a class="hover-item" asp-area="" asp-action="Logout" asp-controller="Authentication">
+                                    <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
+                                        <div class="p-2 bg-gray change-item rounded-2">
+                                            <i class="fa-solid fa-arrow-right-from-bracket change-icon"></i>
+                                        </div>
+                                        <span class="change-text">Log out</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        @* <li class="nav-item"><a class="hover-item" asp-area="" asp-action="Logout"
+                    asp-controller="Authentication">
+                    <div class="px-2 py-3 d-flex align-items-center justify-content-start gap-2">
+                    <div class="p-2 bg-gray change-item rounded-2">
+                    <i class="fa-solid fa-arrow-right-from-bracket change-icon"></i>
+                    </div>
+                    <span class="change-text">Log out</span>
+                    </div>
+                    </a></li> *@
                     }
 
                 </ul>
@@ -91,12 +156,39 @@
     </header>
     @RenderBody()
 
-    <footer class="footer">
-        <div class="container-fluid d-flex justify-content-between">
-            @* <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Admin © 2024 </span>
-            <span class="float-none float-sm-end mt-1 mt-sm-0 text-end"> admin template from Thien</span> *@
-        </div>
-    </footer>
+    <section class="footer">
+        <!-- Footer -->
+        <footer class="text-center text-white" style="background-color: #0a4275;">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: CTA -->
+                <section class="">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <p class="d-flex align-items-center">
+                            <span class="footer-me">Well come to</span>
+                        </p>
+                        <form style="padding-bottom: 15px;" asp-area="" asp-controller="Authentication"
+                            asp-action="Login">
+                            <button data-mdb-ripple-init type="submit" class="btn btn-outline-light btn-rounded">
+                                Sign in
+                            </button>
+                        </form>
+                        <form style="padding-bottom: 15px;" asp-area="" asp-controller="Home" asp-action="Index">
+                            <button data-mdb-ripple-init type="submit" class="btn btn-outline-light btn-rounded">
+                                Home
+                            </button>
+                        </form>
+                        <p class="d-flex align-items-center">
+                            <span class="footer-me">© 2024 Copyright: Miracle</span>
+                        </p>
+                    </div>
+                </section>
+                <!-- Section: CTA -->
+            </div>
+            <!-- Grid container -->
+        </footer>
+        <!-- Footer -->
+    </section>
     <!-- partial -->
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -108,4 +200,5 @@
     @await Component.InvokeAsync("Notyf")
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>

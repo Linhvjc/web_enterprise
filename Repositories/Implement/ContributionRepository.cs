@@ -138,12 +138,12 @@ namespace WebEnterprise.Repositories.Implement
         public async Task<List<GetContributionModel>> SearchContribution(string semester)
         {
             IQueryable<Contribution> conQuery = _dbContext.Contributions;
-            if (!string.IsNullOrEmpty(semester) && semester != "All")
+            if (!string.IsNullOrEmpty(semester))
             {
                 conQuery = conQuery.Where(c => c.Megazine.Semester.Name == semester);
             }
 
-            var contributions = await conQuery
+            var contributions = await conQuery.Where(con => con.Status == "Accept")
                 .Select(c => new GetContributionModel
                 {
                     Id = c.Id,

@@ -78,6 +78,16 @@ namespace WebEnterprise.Areas.Manager.Controllers
         }
 
         [HttpGet]
+        public async Task<ActionResult> ViewExceptionReport()
+        {
+            var exContribution = await _unitOfWork.ContributionRepository.GetContributionsWithout();
+            var exContribution14 = await _unitOfWork.ContributionRepository.GetContributionsWithout14();
+            ViewBag.ExCon = exContribution;
+            ViewBag.ExCon14 = exContribution14;
+            return View();
+        }
+
+        [HttpGet]
         public async Task<ActionResult> ContributionData(string? semester)
         {
             List<GetContributionModel> contributions = await _unitOfWork.ContributionRepository.SearchContribution(semester);
